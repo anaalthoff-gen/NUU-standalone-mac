@@ -26,10 +26,11 @@
       /* Colors - Background */
       --colors-background: #FBFAF9;
       --colors-on-background: #242424;
-      --colors-background-on-background: #242424;
-      --colors-background-on-background-secondary: rgba(36, 36, 36, 0.75);
+      --colors-on-background-secondary: rgba(36, 36, 36, 0.75);
       --colors-surface: #FFFFFF;
-      --component-core-button-primary-on-color-default: #242424;
+      
+      /* Component - Button Primary */
+      --button-primary-on-color: #242424;
       
       /* Typography - Body 2 */
       --fonts-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -274,7 +275,7 @@
       right: 4px;
       bottom: 6px;
       left: var(--sidebar-width);
-      background: #FFFFFF;
+      background: var(--colors-background);
       border-radius: 16px;
       overflow: hidden;
     }
@@ -286,93 +287,74 @@
       overflow-y: auto;
     }
 
-    /* Page header */
-    .page-header {
-      margin-bottom: 24px;
-    }
-
-    .page-title {
-      font-size: 27px;
-      font-weight: 800;
-      line-height: 36px;
-      letter-spacing: var(--fonts-letter-spacing-body-2);
-      color: var(--colors-on-background);
-    }
-
     /* ========================================
-       BROWSER CLEANER PAGE
+       WELCOME CONTENT - Check Now Screen
        ======================================== */
-    .browser-cleaner-page {
+    .welcome-content {
       display: flex;
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: calc(100% - 80px);
+      max-width: 440px;
+      margin: 0 auto;
       gap: 24px;
-      max-width: 664px;
     }
 
-    .browser-cleaner-header {
+    .welcome-text {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 8px;
     }
 
-    .browser-cleaner-title {
-      color: var(--colors-background-on-background, #242424);
+    .welcome-title {
+      color: var(--colors-on-background);
       font-size: 19px;
-      font-family: Inter, var(--fonts-family-primary);
+      font-family: var(--fonts-family-primary);
       font-weight: 800;
       line-height: 28px;
       word-wrap: break-word;
     }
 
-    .browser-cleaner-subtitle {
-      color: var(--colors-background-on-background-secondary, rgba(36, 36, 36, 0.75));
+    .welcome-subtitle {
+      color: var(--colors-on-background-secondary);
       font-size: 15px;
-      font-family: Inter, var(--fonts-family-primary);
+      font-family: var(--fonts-family-primary);
       font-weight: 500;
       line-height: 24px;
       word-wrap: break-word;
     }
 
-    .browser-cleaner-actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
     .check-now-btn {
-      background: var(--colors-brand, #FEEB29);
-      color: var(--component-core-button-primary-on-color-default, #242424);
-      font-size: 15px;
-      font-family: Inter, var(--fonts-family-primary);
-      font-weight: 800;
-      line-height: 20px;
-      word-wrap: break-word;
-      padding: 8px 16px;
-      border-radius: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: var(--colors-brand);
       border: none;
+      border-radius: 24px;
       cursor: pointer;
-      transition: opacity var(--timing-fast) var(--easing);
+      transition: opacity var(--timing-fast) var(--easing), transform var(--timing-fast) var(--easing);
     }
 
     .check-now-btn:hover {
       opacity: 0.9;
+      transform: scale(1.02);
     }
 
     .check-now-btn:active {
-      opacity: 0.8;
+      transform: scale(0.98);
     }
 
-    /* ========================================
-       PLACEHOLDER CONTENT
-       ======================================== */
-    .placeholder-content {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: calc(100% - 80px);
-      color: rgba(36, 36, 36, 0.3);
-      font-size: var(--fonts-size-h4);
-      font-weight: var(--fonts-weight-body-2-medium);
+    .check-now-btn-text {
+      color: var(--button-primary-on-color);
+      font-size: 15px;
+      font-family: var(--fonts-family-primary);
+      font-weight: 800;
+      line-height: 20px;
+      word-wrap: break-word;
     }
   </style>
 </head>
@@ -503,24 +485,14 @@
     <!-- Content Wrapper -->
     <div class="content-wrapper">
       <div class="content-area">
-        <div class="page-header">
-          <h1 class="page-title" id="pageTitle">Dashboard</h1>
-        </div>
-        
-        <!-- Browser Cleaner Page Content -->
-        <div class="browser-cleaner-page" data-page="browser-cleaner" style="display: none;">
-          <div class="browser-cleaner-header">
-            <h2 class="browser-cleaner-title">Find browsing data to clean up</h2>
-            <p class="browser-cleaner-subtitle">Browsing data includes cached files, browsing history, cookies, and more. Choose what to remove before cleaning up.</p>
+        <div class="welcome-content">
+          <div class="welcome-text">
+            <h1 class="welcome-title">Find browsing data to clean up</h1>
+            <p class="welcome-subtitle">Browsing data includes cached files, browsing history, cookies, and more. Choose what to remove before cleaning up.</p>
           </div>
-          <div class="browser-cleaner-actions">
-            <button class="check-now-btn">Check Now</button>
-          </div>
-        </div>
-
-        <!-- Dashboard Placeholder (default) -->
-        <div class="placeholder-content" data-page="dashboard">
-          <span>Content will appear here</span>
+          <button class="check-now-btn">
+            <span class="check-now-btn-text">Check Now</span>
+          </button>
         </div>
       </div>
     </div>
@@ -534,9 +506,6 @@
       'use strict';
       
       const menuItems = document.querySelectorAll('.menu-item');
-      const pageTitle = document.getElementById('pageTitle');
-      const browserCleanerPage = document.querySelector('.browser-cleaner-page');
-      const placeholderContent = document.querySelector('.placeholder-content');
       
       // Menu item click handler
       menuItems.forEach(item => {
@@ -548,23 +517,6 @@
           
           // Add active class to clicked item
           this.classList.add('active');
-          
-          // Update page title
-          const label = this.querySelector('.menu-item-label');
-          const page = this.getAttribute('data-page');
-          
-          if (label && pageTitle) {
-            pageTitle.textContent = label.textContent;
-          }
-          
-          // Show/hide appropriate content
-          if (page === 'browser-cleaner') {
-            if (browserCleanerPage) browserCleanerPage.style.display = 'flex';
-            if (placeholderContent) placeholderContent.style.display = 'none';
-          } else {
-            if (browserCleanerPage) browserCleanerPage.style.display = 'none';
-            if (placeholderContent) placeholderContent.style.display = 'flex';
-          }
         });
       });
     })();
