@@ -374,7 +374,8 @@
       background: var(--colors-desktop-menu);
       display: flex;
       flex-direction: column;
-      border-bottom-left-radius: 8px;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
     }
 
     .sidebar-background {
@@ -384,7 +385,8 @@
       bottom: 2px;
       width: calc(var(--sidebar-width) - 1px);
       background: var(--colors-desktop-menu);
-      border-bottom-left-radius: 8px;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
     }
 
     /* ========================================
@@ -397,21 +399,15 @@
       flex: 1;
       min-height: 0;
       width: 100%;
-      padding: 56px 0 16px 0;
+      padding: 80px 0 42px 0;
+      gap: 4px;
     }
 
     .nav-section {
       display: flex;
       flex-direction: column;
       width: 100%;
-    }
-
-    .nav-section:first-child {
-      margin-bottom: 24px;
-    }
-
-    .nav-section:first-child + .nav-divider {
-      display: none;
+      gap: 4px;
     }
 
     .nav-divider {
@@ -434,11 +430,11 @@
     }
 
     .menu-item:hover {
-      background: var(--colors-desktop-on-menu-extra-light);
+      background: rgba(68, 68, 68, 0.05);
     }
 
     .menu-item.active {
-      background: var(--colors-desktop-on-menu-extra-light);
+      background: rgba(68, 68, 68, 0.05);
     }
 
     .menu-item.active::before {
@@ -456,6 +452,7 @@
       width: 24px;
       height: 24px;
       flex-shrink: 0;
+      position: relative;
     }
 
     .menu-item-icon img,
@@ -466,12 +463,23 @@
 
     .menu-item-label {
       flex: 1;
-      font-size: var(--fonts-size-body-2);
-      font-weight: var(--fonts-weight-body-2);
-      line-height: var(--fonts-line-height-body-2);
-      letter-spacing: var(--fonts-letter-spacing-body-2);
+      font-family: var(--fonts-family-primary);
+      font-weight: 400;
+      line-height: 20px;
       color: var(--colors-desktop-on-menu);
       word-wrap: break-word;
+    }
+
+    /* Menu item text size variants */
+    .menu-item-label.large {
+      font-size: 14px;
+      letter-spacing: 0px;
+    }
+
+    .menu-item-label.small {
+      font-size: 13px;
+      letter-spacing: -0.3px;
+      color: #fbfaf9;
     }
 
     /* ========================================
@@ -1900,95 +1908,111 @@
       <div class="sidebar-background"></div>
       
       <nav class="main-nav">
-        <!-- Dashboard (Home) - Active by default -->
+        <!-- Menu Items Section -->
         <div class="nav-section">
+          <!-- Dashboard (Home) - Active by default -->
           <a href="#" class="menu-item active" data-page="dashboard">
             <div class="menu-item-icon">
               <img src="assets/icons/ic_24_home.svg" alt="Dashboard">
             </div>
-            <span class="menu-item-label">Dashboard</span>
-          </a>
-        </div>
-        
-        <!-- Divider -->
-        <div class="nav-divider"></div>
-        
-        <!-- Main Tools Section -->
-        <div class="nav-section">
-          <a href="#" class="menu-item" data-page="disk-cleaner">
-            <div class="menu-item-icon">
-              <img src="assets/icons/ic_24_browser_cleanup.svg" alt="Disk Cleaner">
-            </div>
-            <span class="menu-item-label">Disk Cleaner</span>
+            <span class="menu-item-label large">Dashboard</span>
           </a>
           
+          <!-- Divider -->
+          <div class="nav-divider"></div>
+          
+          <!-- Browser cleaner -->
           <a href="#" class="menu-item" data-page="browser-cleaner">
             <div class="menu-item-icon">
               <img src="assets/icons/ic_24_web.svg" alt="Browser Cleaner">
             </div>
-            <span class="menu-item-label">Browser Cleaner</span>
+            <span class="menu-item-label large">Browser cleaner</span>
           </a>
           
+          <!-- Disk Cleaner -->
+          <a href="#" class="menu-item" data-page="disk-cleaner">
+            <div class="menu-item-icon">
+              <img src="assets/icons/ic_24_browser_cleanup.svg" alt="Disk Cleaner">
+            </div>
+            <span class="menu-item-label large">Disk Cleaner</span>
+          </a>
+          
+          <!-- Duplicate Finder -->
           <a href="#" class="menu-item" data-page="duplicate-finder">
             <div class="menu-item-icon">
-              <img src="assets/icons/apps-overview.svg" alt="Duplicate Finder">
+              <img src="assets/icons/ic_24_duplicates.svg" alt="Duplicate Finder">
             </div>
-            <span class="menu-item-label">Duplicate Finder</span>
+            <span class="menu-item-label large">Duplicate Finder</span>
           </a>
           
+          <!-- Photo Cleaner -->
           <a href="#" class="menu-item" data-page="photo-cleaner">
             <div class="menu-item-icon">
               <img src="assets/icons/ic_24_image.svg" alt="Photo Cleaner">
             </div>
-            <span class="menu-item-label">Photo Cleaner</span>
+            <span class="menu-item-label large">Photo Cleaner</span>
           </a>
           
+          <!-- App Uninstaller -->
           <a href="#" class="menu-item" data-page="app-uninstaller">
             <div class="menu-item-icon">
               <img src="assets/icons/apps-overview.svg" alt="App Uninstaller">
             </div>
-            <span class="menu-item-label">App Uninstaller</span>
+            <span class="menu-item-label small">App Uninstaller</span>
           </a>
           
+          <!-- Manage Startups -->
           <a href="#" class="menu-item" data-page="startup-manager">
             <div class="menu-item-icon">
-              <img src="assets/icons/ic_24_custom_dashboard.svg" alt="Startup Manager">
+              <img src="assets/icons/ic_24_custom_dashboard.svg" alt="Manage Startups">
             </div>
-            <span class="menu-item-label">Startup Manager</span>
+            <span class="menu-item-label small">Manage Startups</span>
           </a>
           
+          <!-- Cloud Drive Cleaner -->
+          <a href="#" class="menu-item" data-page="cloud-drive-cleaner">
+            <div class="menu-item-icon">
+              <img src="assets/icons/ic_24_browser_cleanup.svg" alt="Cloud Drive Cleaner">
+            </div>
+            <span class="menu-item-label small">Cloud Drive Cleaner</span>
+          </a>
+          
+          <!-- System Monitor -->
           <a href="#" class="menu-item" data-page="system-monitor">
             <div class="menu-item-icon">
               <img src="assets/icons/ic_24_device_laptop.svg" alt="System Monitor">
             </div>
-            <span class="menu-item-label">System Monitor</span>
+            <span class="menu-item-label small">System Monitor</span>
           </a>
           
+          <!-- Statistics -->
           <a href="#" class="menu-item" data-page="statistics">
             <div class="menu-item-icon">
               <img src="assets/icons/ic_24_stats.svg" alt="Statistics">
             </div>
-            <span class="menu-item-label">Statistics</span>
+            <span class="menu-item-label small">Statistics</span>
           </a>
+          
+          <!-- Divider -->
+          <div class="nav-divider"></div>
         </div>
-        
-        <!-- Divider -->
-        <div class="nav-divider"></div>
         
         <!-- Secondary Navigation -->
         <div class="nav-section">
+          <!-- Settings -->
           <a href="#" class="menu-item" data-page="settings">
             <div class="menu-item-icon">
               <img src="assets/icons/ic_24_settings.svg" alt="Settings">
             </div>
-            <span class="menu-item-label">Settings</span>
+            <span class="menu-item-label large">Settings</span>
           </a>
           
+          <!-- Account -->
           <a href="#" class="menu-item" data-page="account">
             <div class="menu-item-icon">
               <img src="assets/icons/ic_24_profile.svg" alt="Account">
             </div>
-            <span class="menu-item-label">Account</span>
+            <span class="menu-item-label small">Account</span>
           </a>
         </div>
       </nav>
@@ -2364,6 +2388,41 @@
           </div>
         </div>
 
+        <!-- Cloud Drive Cleaner Page -->
+        <div class="feature-page hidden" id="cloudDriveCleanerPage">
+          <div class="feature-header">
+            <div class="feature-heading">
+              <h2 class="feature-title">Cloud Drive Cleaner</h2>
+              <p class="feature-subtitle">
+                Clean up duplicate and unnecessary files from your cloud storage. <a href="#">Learn more</a>
+              </p>
+            </div>
+            <button class="feature-menu-btn" aria-label="Menu">
+              <div class="feature-menu-icon">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="5" r="1.5" fill="#444444"/>
+                  <circle cx="10" cy="10" r="1.5" fill="#444444"/>
+                  <circle cx="10" cy="15" r="1.5" fill="#444444"/>
+                </svg>
+              </div>
+            </button>
+          </div>
+          <div class="feature-content">
+            <div class="feature-illustration">
+              <img src="Ilustrations/illu_l_111.svg" alt="Cloud Drive Cleaner">
+            </div>
+            <div class="feature-info">
+              <h3 class="feature-info-title">Clean up your cloud storage and remove duplicates</h3>
+              <p class="feature-info-text">
+                Next automatic scan scheduled for June 10, 2025 at 4:00pm. <a href="#">Change</a>
+              </p>
+            </div>
+            <div class="feature-actions">
+              <button class="btn btn-primary feature-start-btn">Start Scan</button>
+            </div>
+          </div>
+        </div>
+
         <!-- Disk Cleaner Scanning Page -->
         <div class="disk-cleaner-scanning-page hidden" id="diskCleanerScanningPage">
           <div class="disk-cleaner-scan-header">
@@ -2642,12 +2701,13 @@
       const statisticsPage = document.getElementById('statisticsPage');
       const settingsPage = document.getElementById('settingsPage');
       const accountPage = document.getElementById('accountPage');
+      const cloudDriveCleanerPage = document.getElementById('cloudDriveCleanerPage');
       
       // All pages array for easy hiding
       const allPages = [
         welcomePage, diskCleanerPage, diskCleanerScanningPage, scanningPage, dashboardPage,
         browserCleanerPage, duplicateFinderPage, photoCleanerPage, appUninstallerPage,
-        startupManagerPage, systemMonitorPage, statisticsPage, settingsPage, accountPage
+        startupManagerPage, cloudDriveCleanerPage, systemMonitorPage, statisticsPage, settingsPage, accountPage
       ];
       const startScanBtn = document.getElementById('startScanBtn');
       const diskCleanerStartBtn = document.getElementById('diskCleanerStartBtn');
@@ -2753,6 +2813,11 @@
       function showAccountPage() {
         hideAllPages();
         accountPage.classList.remove('hidden');
+      }
+
+      function showCloudDriveCleanerPage() {
+        hideAllPages();
+        cloudDriveCleanerPage.classList.remove('hidden');
       }
 
       // Reset scan progress
@@ -2888,6 +2953,9 @@
               break;
             case 'account':
               showAccountPage();
+              break;
+            case 'cloud-drive-cleaner':
+              showCloudDriveCleanerPage();
               break;
           }
         });
