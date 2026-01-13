@@ -26,7 +26,11 @@
       /* Colors - Background */
       --colors-background: #FBFAF9;
       --colors-on-background: #242424;
+      --colors-on-background-secondary: rgba(36, 36, 36, 0.75);
       --colors-surface: #FFFFFF;
+      
+      /* Colors - Button */
+      --component-core-button-primary-on-color-default: #242424;
       
       /* Typography - Body 2 */
       --fonts-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -138,6 +142,7 @@
 
     .app-logo {
       padding: 0 24px 8px 0;
+      margin-top: 40px;
     }
 
     .app-logo img {
@@ -271,7 +276,7 @@
       right: 4px;
       bottom: 6px;
       left: var(--sidebar-width);
-      background: var(--colors-background);
+      background: #FFFFFF;
       border-radius: 16px;
       overflow: hidden;
     }
@@ -441,7 +446,15 @@
           <h1 class="page-title" id="pageTitle">Dashboard</h1>
         </div>
         
-        <div class="placeholder-content">
+        <div class="browser-cleaner-page" id="browserCleanerPage" style="display: none;">
+          <div class="browser-cleaner-header">
+            <h2 class="browser-cleaner-title">Find browsing data to clean up</h2>
+            <p class="browser-cleaner-description">Browsing data includes cached files, browsing history, cookies, and more. Choose what to remove before cleaning up.</p>
+          </div>
+          <button class="browser-cleaner-button">Check Now</button>
+        </div>
+        
+        <div class="placeholder-content" id="placeholderContent">
           <span>Content will appear here</span>
         </div>
       </div>
@@ -457,6 +470,8 @@
       
       const menuItems = document.querySelectorAll('.menu-item');
       const pageTitle = document.getElementById('pageTitle');
+      const browserCleanerPage = document.getElementById('browserCleanerPage');
+      const placeholderContent = document.getElementById('placeholderContent');
       
       // Menu item click handler
       menuItems.forEach(item => {
@@ -471,8 +486,19 @@
           
           // Update page title
           const label = this.querySelector('.menu-item-label');
+          const page = this.getAttribute('data-page');
+          
           if (label && pageTitle) {
             pageTitle.textContent = label.textContent;
+          }
+          
+          // Show/hide content based on page
+          if (page === 'browser-cleaner') {
+            if (browserCleanerPage) browserCleanerPage.style.display = 'flex';
+            if (placeholderContent) placeholderContent.style.display = 'none';
+          } else {
+            if (browserCleanerPage) browserCleanerPage.style.display = 'none';
+            if (placeholderContent) placeholderContent.style.display = 'flex';
           }
         });
       });
