@@ -1155,6 +1155,144 @@
       gap: 8px;
       align-items: center;
     }
+
+    /* ========================================
+       SCANNING PAGE STYLES
+       ======================================== */
+    .scanning-page {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      padding: 24px 32px;
+      background: var(--colors-surface);
+    }
+
+    .scanning-page.hidden {
+      display: none;
+    }
+
+    .scanning-header {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .scanning-title {
+      font-size: var(--fonts-size-h2);
+      font-weight: var(--fonts-weight-h2);
+      line-height: var(--fonts-line-height-h2);
+      letter-spacing: var(--fonts-letter-spacing-h2);
+      color: var(--colors-on-surface);
+      margin: 0;
+    }
+
+    .scanning-progress-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .scanning-progress-bar {
+      width: 100%;
+      height: 4px;
+      background: var(--colors-on-surface-light);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .scanning-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--colors-accent) 0%, var(--colors-brand) 100%);
+      border-radius: 2px;
+      transition: width 0.3s ease;
+      width: 0%;
+    }
+
+    .scanning-progress-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .scanning-status-text {
+      font-size: var(--fonts-size-body-2);
+      font-weight: var(--fonts-weight-body-2);
+      line-height: var(--fonts-line-height-body-2);
+      color: var(--colors-on-surface-secondary);
+    }
+
+    .stop-scan-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      min-width: 80px;
+      padding: 6px 12px;
+      background: transparent;
+      border: 1px solid var(--colors-on-surface-light);
+      border-radius: 24px;
+      cursor: pointer;
+      transition: all var(--timing-fast) var(--easing);
+    }
+
+    .stop-scan-btn:hover {
+      background: var(--colors-background-state-b);
+      border-color: var(--colors-on-surface-secondary);
+    }
+
+    .stop-scan-btn-text {
+      font-size: var(--fonts-size-body-2);
+      font-weight: 700;
+      line-height: 16px;
+      letter-spacing: 0.5px;
+      color: var(--colors-on-surface);
+    }
+
+    .scanning-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .scanning-illustration {
+      width: 400px;
+      height: 200px;
+    }
+
+    .scanning-illustration img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .scanning-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-align: center;
+    }
+
+    .scanning-percentage {
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 28px;
+      color: var(--colors-on-surface);
+      margin: 0;
+    }
+
+    .scanning-subtitle {
+      font-size: var(--fonts-size-body-2);
+      font-weight: var(--fonts-weight-body-2);
+      line-height: var(--fonts-line-height-body-2);
+      color: var(--colors-on-surface-secondary);
+      margin: 0;
+    }
   </style>
 </head>
 <body>
@@ -1286,6 +1424,33 @@
             </div>
             <div class="welcome-actions">
               <button class="btn btn-primary" id="startScanBtn">Start scan</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scanning Page (shown during scan) -->
+        <div class="scanning-page hidden" id="scanningPage">
+          <div class="scanning-header">
+            <h2 class="scanning-title">Cleanup scan</h2>
+            <div class="scanning-progress-container">
+              <div class="scanning-progress-bar">
+                <div class="scanning-progress-fill" id="scanProgressFill"></div>
+              </div>
+              <div class="scanning-progress-info">
+                <span class="scanning-status-text">Scanning for digital clutter...</span>
+                <button class="stop-scan-btn" id="stopScanBtn">
+                  <span class="stop-scan-btn-text">Stop scan</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="scanning-content">
+            <div class="scanning-illustration">
+              <img src="Ilustrations/119.svg" alt="Scanning">
+            </div>
+            <div class="scanning-info">
+              <h3 class="scanning-percentage" id="scanPercentage">Scanning... 0%</h3>
+              <p class="scanning-subtitle">This may take a few minutes.</p>
             </div>
           </div>
         </div>
@@ -1501,26 +1666,88 @@
     (function() {
       'use strict';
 
-      // Welcome Page to Dashboard transition
+      // Page elements
       const welcomePage = document.getElementById('welcomePage');
+      const scanningPage = document.getElementById('scanningPage');
       const dashboardPage = document.getElementById('dashboardPage');
       const startScanBtn = document.getElementById('startScanBtn');
+      const stopScanBtn = document.getElementById('stopScanBtn');
+      const scanProgressFill = document.getElementById('scanProgressFill');
+      const scanPercentage = document.getElementById('scanPercentage');
+
+      let scanInterval = null;
+      let currentProgress = 0;
 
       // Function to show welcome page
       function showWelcomePage() {
         welcomePage.classList.remove('hidden');
+        scanningPage.classList.add('hidden');
         dashboardPage.classList.add('hidden');
+        resetScan();
+      }
+
+      // Function to show scanning page
+      function showScanningPage() {
+        welcomePage.classList.add('hidden');
+        scanningPage.classList.remove('hidden');
+        dashboardPage.classList.add('hidden');
+        startScanAnimation();
       }
 
       // Function to show dashboard page
       function showDashboardPage() {
         welcomePage.classList.add('hidden');
+        scanningPage.classList.add('hidden');
         dashboardPage.classList.remove('hidden');
+        resetScan();
       }
 
+      // Reset scan progress
+      function resetScan() {
+        if (scanInterval) {
+          clearInterval(scanInterval);
+          scanInterval = null;
+        }
+        currentProgress = 0;
+        if (scanProgressFill) scanProgressFill.style.width = '0%';
+        if (scanPercentage) scanPercentage.textContent = 'Scanning... 0%';
+      }
+
+      // Start scan animation
+      function startScanAnimation() {
+        currentProgress = 0;
+        scanInterval = setInterval(function() {
+          currentProgress += Math.random() * 8 + 2; // Random increment between 2-10
+          if (currentProgress >= 100) {
+            currentProgress = 100;
+            clearInterval(scanInterval);
+            scanInterval = null;
+            
+            // Update to 100% and show dashboard after a short delay
+            scanProgressFill.style.width = '100%';
+            scanPercentage.textContent = 'Scanning... 100%';
+            
+            setTimeout(function() {
+              showDashboardPage();
+            }, 500);
+          } else {
+            scanProgressFill.style.width = currentProgress + '%';
+            scanPercentage.textContent = 'Scanning... ' + Math.round(currentProgress) + '%';
+          }
+        }, 200);
+      }
+
+      // Start scan button click
       if (startScanBtn) {
         startScanBtn.addEventListener('click', function() {
-          showDashboardPage();
+          showScanningPage();
+        });
+      }
+
+      // Stop scan button click
+      if (stopScanBtn) {
+        stopScanBtn.addEventListener('click', function() {
+          showWelcomePage();
         });
       }
       
