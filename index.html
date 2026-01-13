@@ -919,8 +919,9 @@
       flex-shrink: 0;
     }
 
-    .status-progress {
+    .status-progress .status-progress-arc {
       animation: spin 1s linear infinite;
+      transform-origin: center;
     }
 
     @keyframes spin {
@@ -1676,7 +1677,8 @@
                   <div class="cleaner-status hidden" id="cleaner-disk-status">
                     <span class="cleaner-status-text"></span>
                     <svg class="cleaner-status-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-dasharray="31.416" stroke-dashoffset="23.562" stroke-linecap="round"/>
+                      <circle cx="12" cy="12" r="10" stroke="#444444" stroke-width="2" fill="none"/>
+                      <circle cx="12" cy="12" r="10" stroke="#0061D3" stroke-width="2" stroke-dasharray="31.416" stroke-dashoffset="23.562" stroke-linecap="round" fill="none" class="status-progress-arc"/>
                     </svg>
                   </div>
                   <button class="chevron-btn">
@@ -1708,7 +1710,8 @@
                   <div class="cleaner-status hidden" id="cleaner-browser-status">
                     <span class="cleaner-status-text"></span>
                     <svg class="cleaner-status-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-dasharray="31.416" stroke-dashoffset="23.562" stroke-linecap="round"/>
+                      <circle cx="12" cy="12" r="10" stroke="#444444" stroke-width="2" fill="none"/>
+                      <circle cx="12" cy="12" r="10" stroke="#0061D3" stroke-width="2" stroke-dasharray="31.416" stroke-dashoffset="23.562" stroke-linecap="round" fill="none" class="status-progress-arc"/>
                     </svg>
                   </div>
                   <button class="chevron-btn">
@@ -1985,7 +1988,6 @@
               cleanerEl.classList.add('cleaning');
               statusText.textContent = 'Cleaning...';
               statusIcon.classList.add('status-progress');
-              statusIcon.style.color = 'var(--colors-accent)';
 
               // After duration, mark as cleaned
               setTimeout(() => {
