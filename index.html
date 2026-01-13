@@ -1380,15 +1380,28 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--colors-background-state-b);
-      border: 1px solid var(--colors-on-surface-secondary);
+      background: #F2F2F2;
+      border: 1px solid #444444;
       border-radius: 4px;
+      padding: 6px;
       cursor: pointer;
       transition: all var(--timing-fast) var(--easing);
+      box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.16);
     }
 
     .disk-cleaner-menu-btn:hover {
-      background: var(--colors-on-surface-light);
+      background: var(--btn-secondary-bg-hover);
+    }
+
+    .disk-cleaner-menu-icon {
+      width: 20px;
+      height: 20px;
+      position: relative;
+    }
+
+    .disk-cleaner-menu-icon svg {
+      width: 100%;
+      height: 100%;
     }
 
     .disk-cleaner-content {
@@ -1731,11 +1744,13 @@
               </p>
             </div>
             <button class="disk-cleaner-menu-btn" aria-label="Menu">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="10" cy="5" r="1.5" fill="#242424"/>
-                <circle cx="10" cy="10" r="1.5" fill="#242424"/>
-                <circle cx="10" cy="15" r="1.5" fill="#242424"/>
-              </svg>
+              <div class="disk-cleaner-menu-icon">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="5" r="1.5" fill="#444444"/>
+                  <circle cx="10" cy="10" r="1.5" fill="#444444"/>
+                  <circle cx="10" cy="15" r="1.5" fill="#444444"/>
+                </svg>
+              </div>
             </button>
           </div>
           <div class="disk-cleaner-content">
