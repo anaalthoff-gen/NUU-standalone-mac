@@ -648,7 +648,7 @@
       border-top: 1px solid var(--colors-on-surface-light);
     }
 
-    /* Checkbox */
+    /* Checkbox - Figma Design Style */
     .checkbox-wrapper {
       width: 24px;
       height: 24px;
@@ -668,12 +668,16 @@
     .checkbox-visual {
       width: 24px;
       height: 24px;
-      border-radius: 6px;
-      background: var(--colors-success);
+      border-radius: 4px;
+      background: #0B9A99;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all var(--timing-fast) var(--easing);
+    }
+
+    .checkbox-input:hover + .checkbox-visual {
+      background: #0AA5A4;
     }
 
     .checkbox-input:not(:checked) + .checkbox-visual {
@@ -686,9 +690,9 @@
     }
 
     .checkbox-icon {
-      width: 14px;
-      height: 14px;
-      color: var(--colors-on-success);
+      width: 16px;
+      height: 16px;
+      color: #FFFFFF;
     }
 
     .cleaner-content {
