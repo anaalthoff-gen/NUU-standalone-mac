@@ -1155,33 +1155,6 @@
       gap: 8px;
       align-items: center;
     }
-
-    .start-scan-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-width: 48px;
-      height: 40px;
-      padding: 8px 24px;
-      background: var(--colors-brand);
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all var(--timing-fast) var(--easing);
-    }
-
-    .start-scan-btn:hover {
-      background: #FFF488;
-    }
-
-    .start-scan-btn-text {
-      font-size: 16px;
-      font-weight: 700;
-      line-height: 20px;
-      letter-spacing: 0px;
-      color: var(--colors-on-premium);
-    }
   </style>
 </head>
 <body>
@@ -1312,9 +1285,7 @@
               <p class="welcome-description">Start by scanning your Mac and then you'll be ready to clean. We won't clean anything without asking first!</p>
             </div>
             <div class="welcome-actions">
-              <button class="start-scan-btn" id="startScanBtn">
-                <span class="start-scan-btn-text">Start scan</span>
-              </button>
+              <button class="btn btn-primary" id="startScanBtn">Start scan</button>
             </div>
           </div>
         </div>
@@ -1535,12 +1506,21 @@
       const dashboardPage = document.getElementById('dashboardPage');
       const startScanBtn = document.getElementById('startScanBtn');
 
+      // Function to show welcome page
+      function showWelcomePage() {
+        welcomePage.classList.remove('hidden');
+        dashboardPage.classList.add('hidden');
+      }
+
+      // Function to show dashboard page
+      function showDashboardPage() {
+        welcomePage.classList.add('hidden');
+        dashboardPage.classList.remove('hidden');
+      }
+
       if (startScanBtn) {
         startScanBtn.addEventListener('click', function() {
-          // Hide welcome page
-          welcomePage.classList.add('hidden');
-          // Show dashboard page
-          dashboardPage.classList.remove('hidden');
+          showDashboardPage();
         });
       }
       
@@ -1556,6 +1536,12 @@
           
           // Add active class to clicked item
           this.classList.add('active');
+
+          // Check if Dashboard was clicked - return to welcome page
+          const page = this.getAttribute('data-page');
+          if (page === 'dashboard') {
+            showWelcomePage();
+          }
         });
       });
 
