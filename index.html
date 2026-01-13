@@ -10,7 +10,7 @@
   <style>
     /* ========================================
        DESIGN TOKENS / CSS VARIABLES
-       Light Theme Version
+       Extracted from Figma Scam Protection Dashboard
        ======================================== */
     :root {
       /* Colors - Desktop Menu */
@@ -18,56 +18,111 @@
       --colors-desktop-on-menu: #FFFFFF;
       --colors-desktop-on-menu-extra-light: rgba(255, 255, 255, 0.05);
       --colors-desktop-on-menu-light: rgba(255, 255, 255, 0.15);
-      --colors-desktop-on-menu-success: #018850;
+      --colors-desktop-on-menu-success: #007644;
       
-      /* Colors - Brand */
+      /* Colors - Brand / Premium */
       --colors-brand: #FEEB29;
+      --colors-premium: #FEEB29;
+      --colors-on-premium: #242424;
       
-      /* Colors - Light Theme Background */
-      --colors-background: #F5F5F7;
-      --colors-on-background: #1D1D1F;
-      --colors-on-background-secondary: rgba(29, 29, 31, 0.65);
-      --colors-on-background-light: rgba(29, 29, 31, 0.45);
+      /* Colors - Background (from Figma tokens) */
+      --colors-background: #FBFAF9;
+      --colors-on-background: #242424;
+      --colors-on-background-secondary: rgba(36, 36, 36, 0.75);
+      --colors-on-background-light: rgba(36, 36, 36, 0.1);
+      --colors-on-background-disabled: rgba(36, 36, 36, 0.5);
+      --colors-background-state-b: rgba(0, 0, 0, 0.1);
+      
+      /* Colors - Surface (from Figma tokens) */
       --colors-surface: #FFFFFF;
-      --colors-surface-elevated: #FFFFFF;
-      --colors-surface-secondary: #F0F0F2;
+      --colors-on-surface: #242424;
+      --colors-on-surface-secondary: rgba(36, 36, 36, 0.75);
+      --colors-on-surface-light: rgba(36, 36, 36, 0.1);
+      --colors-on-surface-disabled: rgba(36, 36, 36, 0.5);
       
-      /* Accent Colors */
-      --colors-accent: #0071E3;
-      --colors-accent-hover: #0077ED;
-      --colors-attention: #FF9500;
-      --colors-success: #34C759;
+      /* Accent Colors (from Figma tokens) */
+      --colors-accent: #0F71F0;
+      --colors-accent-hover: #0A5FD4;
+      --colors-attention: #E07100;
+      --colors-success: #007644;
+      --colors-on-success: #FFFFFF;
       
-      /* Component - Button Primary */
+      /* Component - Button (from Figma tokens) */
       --button-primary-on-color: #FFFFFF;
+      --button-secondary-background: #FFFFFF;
+      --button-secondary-border-color: #242424;
+      --button-secondary-border-width: 2px;
+      --button-secondary-on-color: #242424;
+      --button-side-padding-m: 16px;
+      --button-side-padding-s: 8px;
+      --button-spacing-gap: 8px;
       
-      /* Typography */
+      /* Component - Badge Icon */
+      --badge-icon-on-color: #242424;
+      
+      /* Typography - Font Family */
       --fonts-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --fonts-size-body-2: 13px;
-      --fonts-weight-body-2: 400;
-      --fonts-weight-body-2-medium: 500;
-      --fonts-line-height-body-2: 20px;
-      --fonts-letter-spacing-body-2: -0.3px;
       
-      /* Typography - H4 */
+      /* Typography - H1 (from Figma tokens) */
+      --fonts-size-h1: 27px;
+      --fonts-weight-h1: 800;
+      --fonts-line-height-h1: 36px;
+      --fonts-letter-spacing-h1: -0.3px;
+      
+      /* Typography - H4 (from Figma tokens) */
       --fonts-size-h4: 15px;
       --fonts-weight-h4: 700;
       --fonts-line-height-h4: 24px;
       --fonts-letter-spacing-h4: -0.3px;
       
-      /* Shadows */
+      /* Typography - Body 1 (from Figma tokens) */
+      --fonts-size-body-1: 15px;
+      --fonts-weight-body-1: 500;
+      --fonts-line-height-body-1: 24px;
+      --fonts-letter-spacing-body-1: -0.3px;
+      
+      /* Typography - Body 2 (from Figma tokens) */
+      --fonts-size-body-2: 13px;
+      --fonts-weight-body-2: 500;
+      --fonts-line-height-body-2: 20px;
+      --fonts-letter-spacing-body-2: -0.3px;
+      
+      /* Typography - Caption (from Figma tokens) */
+      --fonts-size-caption: 11px;
+      --fonts-weight-caption: 400;
+      --fonts-line-height-caption: 16px;
+      --fonts-letter-spacing-caption: -0.3px;
+      
+      /* Typography - Button Small (from Figma tokens) */
+      --fonts-size-button-small: 13px;
+      --fonts-weight-button-small: 800;
+      --fonts-line-height-button-small: 16px;
+      --fonts-letter-spacing-button-small: -0.3px;
+      
+      /* Elevation / Shadows (from Figma tokens) */
       --shadow-window: 0px 32px 64px 0px rgba(0, 0, 0, 0.28), 
                        0px 2px 21px 0px rgba(0, 0, 0, 0.22);
-      --shadow-card: 0px 2px 8px rgba(0, 0, 0, 0.06), 
-                     0px 4px 16px rgba(0, 0, 0, 0.04);
-      --shadow-card-hover: 0px 4px 16px rgba(0, 0, 0, 0.08), 
-                           0px 8px 24px rgba(0, 0, 0, 0.06);
+      --elevation-tile-x: 0px;
+      --elevation-tile-y: 1px;
+      --elevation-tile-blur: 4px;
+      --elevation-tile-color: rgba(95, 79, 58, 0.4);
+      --shadow-tile: 0px 1px 4px 0px rgba(95, 79, 58, 0.4);
+      --shadow-tile-hover: 0px 2px 8px 0px rgba(95, 79, 58, 0.5);
       
       /* Sizing */
       --sidebar-width: 196px;
       --app-bar-height: 44px;
-      --radius-card: 16px;
+      
+      /* Radius (from Figma tokens) */
+      --radius-tile: 20px;
       --radius-button: 24px;
+      --radius-chip: 24px;
+      --radius-row: 8px;
+      
+      /* Spacing */
+      --spacing-tile-padding: 16px;
+      --spacing-gap-default: 16px;
+      --spacing-gap-small: 8px;
       
       /* Animation */
       --timing-fast: 150ms;
@@ -286,18 +341,18 @@
       bottom: 6px;
       left: var(--sidebar-width);
       background: var(--colors-background);
-      border-radius: 16px;
+      border-radius: var(--radius-tile);
       overflow: hidden;
     }
 
     .content-area {
       width: 100%;
       height: 100%;
-      padding: 32px 40px;
+      padding: 32px 40px 24px 40px;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
-      gap: 32px;
+      gap: 24px;
     }
 
     /* ========================================
@@ -313,22 +368,23 @@
     .scan-header-left {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: var(--spacing-gap-small);
     }
 
     .scan-title {
-      font-size: 22px;
-      font-weight: 800;
-      line-height: 28px;
+      font-size: var(--fonts-size-h1);
+      font-weight: var(--fonts-weight-h1);
+      line-height: var(--fonts-line-height-h1);
       color: var(--colors-on-background);
-      letter-spacing: -0.4px;
+      letter-spacing: var(--fonts-letter-spacing-h1);
     }
 
     .scan-subtitle {
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 20px;
+      font-size: var(--fonts-size-body-2);
+      font-weight: var(--fonts-weight-body-2);
+      line-height: var(--fonts-line-height-body-2);
       color: var(--colors-on-background-secondary);
+      letter-spacing: var(--fonts-letter-spacing-body-2);
     }
 
     .scan-header-right {
@@ -341,51 +397,52 @@
     .rescan-btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 6px 12px 6px 16px;
-      border: 1px solid rgba(29, 29, 31, 0.15);
+      gap: var(--button-spacing-gap);
+      padding: 6px var(--button-side-padding-m);
+      border: var(--button-secondary-border-width) solid var(--button-secondary-border-color);
       border-radius: var(--radius-button);
-      background: transparent;
+      background: var(--button-secondary-background);
       cursor: pointer;
       transition: all var(--timing-fast) var(--easing);
     }
 
     .rescan-btn:hover {
-      background: rgba(29, 29, 31, 0.04);
-      border-color: rgba(29, 29, 31, 0.25);
+      background: var(--colors-background-state-b);
     }
 
     .rescan-btn-text {
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 16px;
-      color: var(--colors-on-background);
-      letter-spacing: 0.3px;
+      font-size: var(--fonts-size-button-small);
+      font-weight: var(--fonts-weight-button-small);
+      line-height: var(--fonts-line-height-button-small);
+      color: var(--button-secondary-on-color);
+      letter-spacing: var(--fonts-letter-spacing-button-small);
     }
 
     .rescan-btn-icon {
       width: 20px;
       height: 20px;
+      color: var(--button-secondary-on-color);
     }
 
     .last-scan-text {
-      font-size: 13px;
-      font-weight: 400;
-      line-height: 20px;
+      font-size: var(--fonts-size-caption);
+      font-weight: var(--fonts-weight-caption);
+      line-height: var(--fonts-line-height-caption);
       color: var(--colors-on-background-secondary);
+      letter-spacing: var(--fonts-letter-spacing-caption);
     }
 
     /* ========================================
-       MAIN SCAN CARD
+       MAIN SCAN CARD (Tile Styles from Figma)
        ======================================== */
     .scan-card {
       background: var(--colors-surface);
-      border-radius: var(--radius-card);
-      box-shadow: var(--shadow-card);
-      padding: 28px 32px;
+      border-radius: var(--radius-tile);
+      box-shadow: var(--shadow-tile);
+      padding: var(--spacing-tile-padding);
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: var(--spacing-gap-default);
     }
 
     .scan-card-header {
@@ -397,14 +454,15 @@
     .scan-card-info {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 4px;
     }
 
     .safe-to-remove {
-      font-size: 15px;
-      font-weight: 400;
-      line-height: 24px;
-      color: var(--colors-on-background-secondary);
+      font-size: var(--fonts-size-body-2);
+      font-weight: var(--fonts-weight-body-2);
+      line-height: var(--fonts-line-height-body-2);
+      color: var(--colors-on-surface-secondary);
+      letter-spacing: var(--fonts-letter-spacing-body-2);
     }
 
     .clean-amount {
@@ -414,31 +472,35 @@
     }
 
     .clean-label {
-      font-size: 22px;
-      font-weight: 800;
-      line-height: 28px;
-      color: var(--colors-on-background);
+      font-size: var(--fonts-size-h4);
+      font-weight: var(--fonts-weight-h4);
+      line-height: var(--fonts-line-height-h4);
+      color: var(--colors-on-surface);
+      letter-spacing: var(--fonts-letter-spacing-h4);
     }
 
     .clean-value {
-      font-size: 22px;
-      font-weight: 800;
-      line-height: 28px;
+      font-size: var(--fonts-size-h4);
+      font-weight: var(--fonts-weight-h4);
+      line-height: var(--fonts-line-height-h4);
       color: var(--colors-accent);
+      letter-spacing: var(--fonts-letter-spacing-h4);
     }
 
     .clean-items {
-      font-size: 15px;
-      font-weight: 400;
-      line-height: 24px;
-      color: var(--colors-on-background-secondary);
+      font-size: var(--fonts-size-body-2);
+      font-weight: var(--fonts-weight-body-2);
+      line-height: var(--fonts-line-height-body-2);
+      color: var(--colors-on-surface-secondary);
+      letter-spacing: var(--fonts-letter-spacing-body-2);
     }
 
     .clean-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 8px 20px;
+      min-width: 48px;
+      padding: 6px var(--button-side-padding-m);
       background: var(--colors-accent);
       border: none;
       border-radius: var(--radius-button);
@@ -448,7 +510,6 @@
 
     .clean-btn:hover {
       background: var(--colors-accent-hover);
-      transform: scale(1.02);
     }
 
     .clean-btn:active {
@@ -456,32 +517,34 @@
     }
 
     .clean-btn-text {
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 16px;
+      font-size: var(--fonts-size-button-small);
+      font-weight: var(--fonts-weight-button-small);
+      line-height: var(--fonts-line-height-button-small);
       color: var(--button-primary-on-color);
-      letter-spacing: 0.3px;
+      letter-spacing: var(--fonts-letter-spacing-button-small);
     }
 
     /* ========================================
-       CLEANER LIST
+       CLEANER LIST (Feature Row Styles)
        ======================================== */
     .cleaner-list {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: var(--spacing-gap-small);
     }
 
     .cleaner-item {
       display: flex;
       align-items: center;
-      gap: 16px;
-      padding: 4px 0;
+      gap: var(--spacing-gap-small);
+      padding: 12px 0;
+      border-radius: var(--radius-row);
+      position: relative;
     }
 
     .cleaner-item + .cleaner-item {
-      padding-top: 16px;
-      border-top: 1px solid rgba(29, 29, 31, 0.08);
+      padding-top: 12px;
+      border-top: 1px solid var(--colors-on-surface-light);
     }
 
     /* Checkbox */
@@ -505,7 +568,7 @@
       width: 24px;
       height: 24px;
       border-radius: 6px;
-      background: var(--colors-accent);
+      background: var(--colors-success);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -514,7 +577,7 @@
 
     .checkbox-input:not(:checked) + .checkbox-visual {
       background: transparent;
-      border: 2px solid rgba(29, 29, 31, 0.25);
+      border: 2px solid var(--colors-on-surface-secondary);
     }
 
     .checkbox-input:not(:checked) + .checkbox-visual .checkbox-icon {
@@ -524,7 +587,7 @@
     .checkbox-icon {
       width: 14px;
       height: 14px;
-      color: white;
+      color: var(--colors-on-success);
     }
 
     .cleaner-content {
@@ -537,91 +600,93 @@
     .cleaner-info {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 0;
     }
 
     .cleaner-title {
-      font-size: 15px;
-      font-weight: 600;
-      line-height: 22px;
-      color: var(--colors-on-background);
+      font-size: var(--fonts-size-body-1);
+      font-weight: 700;
+      line-height: var(--fonts-line-height-body-1);
+      color: var(--colors-on-surface);
+      letter-spacing: var(--fonts-letter-spacing-body-1);
     }
 
     .cleaner-desc {
-      font-size: 13px;
-      font-weight: 400;
-      line-height: 18px;
-      color: var(--colors-on-background-secondary);
+      font-size: var(--fonts-size-body-2);
+      font-weight: var(--fonts-weight-body-2);
+      line-height: var(--fonts-line-height-body-2);
+      color: var(--colors-on-surface-secondary);
+      letter-spacing: var(--fonts-letter-spacing-body-2);
     }
 
     .cleaner-right {
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: var(--spacing-gap-small);
     }
 
     .cleaner-value {
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 20px;
-      color: var(--colors-on-background);
+      font-size: var(--fonts-size-body-2);
+      font-weight: var(--fonts-weight-body-2);
+      line-height: var(--fonts-line-height-body-2);
+      color: var(--colors-on-surface-secondary);
+      letter-spacing: var(--fonts-letter-spacing-body-2);
       min-width: 80px;
       text-align: right;
     }
 
     .chevron-btn {
-      width: 32px;
-      height: 32px;
+      width: 24px;
+      height: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
       background: transparent;
       border: none;
       cursor: pointer;
-      border-radius: 8px;
+      border-radius: var(--radius-row);
       transition: background var(--timing-fast) var(--easing);
     }
 
     .chevron-btn:hover {
-      background: rgba(29, 29, 31, 0.06);
+      background: var(--colors-background-state-b);
     }
 
     .chevron-icon {
-      width: 20px;
-      height: 20px;
-      color: var(--colors-on-background-light);
+      width: 24px;
+      height: 24px;
+      color: var(--colors-on-background);
     }
 
     /* ========================================
        ADDITIONAL ISSUES SECTION
        ======================================== */
     .section-title {
-      font-size: 13px;
+      font-size: var(--fonts-size-body-1);
       font-weight: 700;
-      line-height: 16px;
-      color: var(--colors-on-background-secondary);
-      letter-spacing: 0.4px;
-      text-transform: uppercase;
-      padding: 0 8px;
+      line-height: var(--fonts-line-height-body-1);
+      color: var(--colors-on-surface);
+      letter-spacing: var(--fonts-letter-spacing-body-1);
+      padding: 0;
     }
 
     .issues-section {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: var(--spacing-gap-default);
     }
 
     .issues-list {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: var(--spacing-gap-small);
     }
 
     .issue-card {
       background: var(--colors-surface);
-      border-radius: var(--radius-card);
-      box-shadow: var(--shadow-card);
-      padding: 20px 24px;
+      border-radius: var(--radius-tile);
+      box-shadow: var(--shadow-tile);
+      padding: var(--spacing-tile-padding);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -630,87 +695,106 @@
     }
 
     .issue-card:hover {
-      box-shadow: var(--shadow-card-hover);
-      transform: translateY(-1px);
+      box-shadow: var(--shadow-tile-hover);
     }
 
     .issue-left {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: var(--spacing-gap-default);
     }
 
     .issue-icon {
       width: 24px;
       height: 24px;
-      color: var(--colors-on-background-secondary);
+      color: var(--badge-icon-on-color);
     }
 
     .issue-info {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 0;
     }
 
     .issue-title {
-      font-size: 15px;
-      font-weight: 600;
-      line-height: 22px;
-      color: var(--colors-on-background);
+      font-size: var(--fonts-size-body-1);
+      font-weight: 700;
+      line-height: var(--fonts-line-height-body-1);
+      color: var(--colors-on-surface);
+      letter-spacing: var(--fonts-letter-spacing-body-1);
     }
 
     .issue-desc {
-      font-size: 13px;
-      font-weight: 400;
-      line-height: 18px;
-      color: var(--colors-on-background-light);
+      font-size: var(--fonts-size-body-2);
+      font-weight: var(--fonts-weight-body-2);
+      line-height: var(--fonts-line-height-body-2);
+      color: var(--colors-on-surface-secondary);
+      letter-spacing: var(--fonts-letter-spacing-body-2);
     }
 
     .issue-right {
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: var(--spacing-gap-small);
     }
 
     .issue-value {
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 20px;
-      color: var(--colors-attention);
+      font-size: var(--fonts-size-body-2);
+      font-weight: var(--fonts-weight-body-2);
+      line-height: var(--fonts-line-height-body-2);
+      color: var(--colors-on-surface-secondary);
+      letter-spacing: var(--fonts-letter-spacing-body-2);
     }
 
     /* ========================================
-       STATISTICS SECTION
+       STATISTICS SECTION (Tile Data Styles)
        ======================================== */
     .stats-section {
+      background: var(--colors-surface);
+      border-radius: var(--radius-tile);
+      box-shadow: var(--shadow-tile);
+      padding: var(--spacing-tile-padding);
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: var(--spacing-gap-default);
+    }
+
+    .stats-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .stats-title {
+      font-size: var(--fonts-size-h4);
+      font-weight: var(--fonts-weight-h4);
+      line-height: var(--fonts-line-height-h4);
+      color: var(--colors-on-surface);
+      letter-spacing: var(--fonts-letter-spacing-h4);
     }
 
     .stats-content {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
-      padding: 16px 24px 16px 8px;
     }
 
     .stats-left {
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: var(--spacing-gap-default);
     }
 
     .stats-items {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: var(--spacing-gap-small);
     }
 
     .stat-item {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: var(--spacing-gap-small);
     }
 
     .stat-dot {
@@ -720,61 +804,64 @@
     }
 
     .stat-dot.space {
-      background: linear-gradient(135deg, #34C759, #30D158);
+      background: var(--colors-success);
     }
 
     .stat-dot.items {
-      background: linear-gradient(135deg, #0071E3, #40A9FF);
+      background: var(--colors-accent);
     }
 
     .stat-text {
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 20px;
-      color: var(--colors-on-background-secondary);
+      font-size: var(--fonts-size-body-2);
+      font-weight: var(--fonts-weight-body-2);
+      line-height: var(--fonts-line-height-body-2);
+      color: var(--colors-on-surface-secondary);
+      letter-spacing: var(--fonts-letter-spacing-body-2);
     }
 
     .stat-value {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--colors-on-background);
+      font-size: var(--fonts-size-h4);
+      font-weight: var(--fonts-weight-h4);
+      line-height: var(--fonts-line-height-h4);
+      color: var(--colors-on-surface);
+      letter-spacing: var(--fonts-letter-spacing-h4);
     }
 
     .all-stats-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 8px 16px;
-      border: 1px solid rgba(29, 29, 31, 0.15);
+      min-width: 48px;
+      padding: 6px var(--button-side-padding-m);
+      border: var(--button-secondary-border-width) solid var(--button-secondary-border-color);
       border-radius: var(--radius-button);
-      background: transparent;
+      background: var(--button-secondary-background);
       cursor: pointer;
       transition: all var(--timing-fast) var(--easing);
     }
 
     .all-stats-btn:hover {
-      background: rgba(29, 29, 31, 0.04);
-      border-color: rgba(29, 29, 31, 0.25);
+      background: var(--colors-background-state-b);
     }
 
     .all-stats-btn-text {
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 16px;
-      color: var(--colors-on-background);
-      letter-spacing: 0.3px;
+      font-size: var(--fonts-size-button-small);
+      font-weight: var(--fonts-weight-button-small);
+      line-height: var(--fonts-line-height-button-small);
+      color: var(--button-secondary-on-color);
+      letter-spacing: var(--fonts-letter-spacing-button-small);
     }
 
     /* Chart Section */
     .stats-chart {
-      width: 360px;
-      height: 100px;
+      width: 300px;
+      height: 128px;
       position: relative;
     }
 
     .chart-container {
       width: 100%;
-      height: 80px;
+      height: 104px;
       position: relative;
       display: flex;
     }
@@ -786,13 +873,13 @@
       right: 0;
       bottom: 0;
       display: flex;
-      gap: 72px;
+      gap: 50px;
     }
 
     .chart-grid-line {
       width: 1px;
       height: 100%;
-      background: rgba(29, 29, 31, 0.08);
+      background: var(--colors-on-surface-light);
     }
 
     .chart-area {
@@ -806,16 +893,19 @@
     .chart-labels {
       display: flex;
       justify-content: space-between;
-      margin-top: 8px;
+      margin-top: var(--spacing-gap-small);
+      border-top: 1px solid var(--colors-on-surface-light);
+      padding-top: var(--spacing-gap-small);
     }
 
     .chart-label {
-      font-size: 12px;
-      font-weight: 400;
-      line-height: 16px;
-      color: var(--colors-on-background-light);
+      font-size: var(--fonts-size-caption);
+      font-weight: var(--fonts-weight-caption);
+      line-height: var(--fonts-line-height-caption);
+      color: var(--colors-on-surface-disabled);
+      letter-spacing: var(--fonts-letter-spacing-caption);
       text-align: center;
-      width: 60px;
+      flex: 1;
     }
 
     /* SVG Chart */
@@ -831,7 +921,7 @@
 
     .chart-line {
       fill: none;
-      stroke: #34C759;
+      stroke: var(--colors-accent);
       stroke-width: 2;
       stroke-linecap: round;
       stroke-linejoin: round;
@@ -843,7 +933,7 @@
 
     .chart-line-blue {
       fill: none;
-      stroke: #0071E3;
+      stroke: var(--colors-attention);
       stroke-width: 2;
       stroke-linecap: round;
       stroke-linejoin: round;
@@ -1124,7 +1214,9 @@
 
         <!-- Statistics Section -->
         <section class="stats-section">
-          <h2 class="section-title">Here's what you've cleaned so far:</h2>
+          <div class="stats-header">
+            <h2 class="stats-title">Here's what you've cleaned so far:</h2>
+          </div>
           <div class="stats-content">
             <div class="stats-left">
               <div class="stats-items">
@@ -1150,24 +1242,25 @@
                   <div class="chart-grid-line"></div>
                   <div class="chart-grid-line"></div>
                   <div class="chart-grid-line"></div>
+                  <div class="chart-grid-line"></div>
                 </div>
-                <svg class="chart-svg" viewBox="0 0 360 70" preserveAspectRatio="none">
+                <svg class="chart-svg" viewBox="0 0 300 104" preserveAspectRatio="none">
                   <defs>
                     <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" style="stop-color:#34C759;stop-opacity:0.3"/>
-                      <stop offset="100%" style="stop-color:#34C759;stop-opacity:0.05"/>
+                      <stop offset="0%" style="stop-color:#0F71F0;stop-opacity:0.4"/>
+                      <stop offset="100%" style="stop-color:#0F71F0;stop-opacity:0.05"/>
                     </linearGradient>
                     <linearGradient id="areaGradientBlue" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" style="stop-color:#0071E3;stop-opacity:0.25"/>
-                      <stop offset="100%" style="stop-color:#0071E3;stop-opacity:0.03"/>
+                      <stop offset="0%" style="stop-color:#E07100;stop-opacity:0.3"/>
+                      <stop offset="100%" style="stop-color:#E07100;stop-opacity:0.03"/>
                     </linearGradient>
                   </defs>
-                  <!-- Blue area (items) -->
-                  <path class="chart-area-fill-blue" d="M0,70 L0,55 Q30,50 60,48 T120,42 T180,38 T240,30 T300,25 T360,22 L360,70 Z"/>
-                  <path class="chart-line-blue" d="M0,55 Q30,50 60,48 T120,42 T180,38 T240,30 T300,25 T360,22"/>
-                  <!-- Green area (space) -->
-                  <path class="chart-area-fill" d="M0,70 L0,60 Q30,58 60,52 T120,48 T180,40 T240,35 T300,28 T360,20 L360,70 Z"/>
-                  <path class="chart-line" d="M0,60 Q30,58 60,52 T120,48 T180,40 T240,35 T300,28 T360,20"/>
+                  <!-- Accent area (scanned items) -->
+                  <path class="chart-area-fill" d="M0,104 L0,70 Q25,65 50,56 T100,42 T150,38 T200,30 T250,25 T300,18 L300,104 Z"/>
+                  <path class="chart-line" d="M0,70 Q25,65 50,56 T100,42 T150,38 T200,30 T250,25 T300,18"/>
+                  <!-- Attention area (risks) -->
+                  <path class="chart-area-fill-blue" d="M0,104 L0,95 Q50,92 100,88 T150,82 T200,86 T250,78 T300,80 L300,104 Z"/>
+                  <path class="chart-line-blue" d="M0,95 Q50,92 100,88 T150,82 T200,86 T250,78 T300,80"/>
                 </svg>
               </div>
               <div class="chart-labels">
