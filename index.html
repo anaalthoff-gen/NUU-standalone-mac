@@ -851,6 +851,27 @@
       letter-spacing: var(--fonts-letter-spacing-body-2);
     }
 
+    /* Dark Tile Variant */
+    .issue-card.issue-card-dark {
+      background: #242424;
+    }
+
+    .issue-card.issue-card-dark .issue-title {
+      color: #FFFFFF;
+    }
+
+    .issue-card.issue-card-dark .issue-desc {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .issue-card.issue-card-dark .issue-value {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .issue-card.issue-card-dark .chevron-icon {
+      color: #FFFFFF;
+    }
+
     /* ========================================
        STATISTICS SECTION (Tile Data Styles)
        ======================================== */
@@ -1279,14 +1300,9 @@
             </div>
 
             <!-- Startup Manager -->
-            <div class="issue-card">
+            <div class="issue-card issue-card-dark">
               <div class="issue-left">
-                <svg class="issue-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
-                  <path d="M9 9H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M9 12H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M9 15H12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
+                <img class="issue-icon" src="assets/icons/ic_24_custom_dashboard.svg" alt="Startup Manager">
                 <div class="issue-info">
                   <span class="issue-title">Startup Manager</span>
                   <span class="issue-desc">Limit the apps that open at startup.</span>
