@@ -1472,6 +1472,149 @@
     }
 
     /* ========================================
+       GENERIC FEATURE PAGE STYLES
+       ======================================== */
+    .feature-page {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      padding: 64px 32px 24px 32px;
+      gap: 64px;
+    }
+
+    .feature-page.hidden {
+      display: none;
+    }
+
+    .feature-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .feature-heading {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-width: 471px;
+    }
+
+    .feature-title {
+      font-size: var(--fonts-size-h2);
+      font-weight: var(--fonts-weight-h2);
+      line-height: var(--fonts-line-height-h2);
+      letter-spacing: var(--fonts-letter-spacing-h2);
+      color: var(--colors-on-background);
+      margin: 0;
+    }
+
+    .feature-subtitle {
+      font-size: var(--fonts-size-body-2);
+      font-weight: var(--fonts-weight-body-2);
+      line-height: var(--fonts-line-height-body-2);
+      letter-spacing: var(--fonts-letter-spacing-body-2);
+      color: var(--colors-on-background-secondary);
+      margin: 0;
+    }
+
+    .feature-subtitle a {
+      color: var(--colors-on-background-secondary);
+      text-decoration: underline;
+    }
+
+    .feature-menu-btn {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #F2F2F2;
+      border: 1px solid #444444;
+      border-radius: 4px;
+      padding: 6px;
+      cursor: pointer;
+      transition: all var(--timing-fast) var(--easing);
+    }
+
+    .feature-menu-btn:hover {
+      background: var(--btn-secondary-bg-hover);
+    }
+
+    .feature-menu-icon {
+      width: 20px;
+      height: 20px;
+      position: relative;
+    }
+
+    .feature-menu-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .feature-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .feature-illustration {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .feature-illustration img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .feature-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-align: center;
+      max-width: 480px;
+    }
+
+    .feature-info-title {
+      font-size: var(--fonts-size-h3);
+      font-weight: var(--fonts-weight-h3);
+      line-height: var(--fonts-line-height-h3);
+      letter-spacing: var(--fonts-letter-spacing-h3);
+      color: var(--colors-on-background);
+      margin: 0;
+    }
+
+    .feature-info-text {
+      font-size: var(--fonts-size-body-2);
+      font-weight: var(--fonts-weight-body-2);
+      line-height: var(--fonts-line-height-body-2);
+      letter-spacing: var(--fonts-letter-spacing-body-2);
+      color: var(--colors-on-background-secondary);
+      margin: 0;
+    }
+
+    .feature-info-text a {
+      color: var(--colors-on-background-secondary);
+      text-decoration: underline;
+    }
+
+    .feature-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    /* ========================================
        DISK CLEANER SCANNING PAGE STYLES
        ======================================== */
     .disk-cleaner-scanning-page {
@@ -1906,6 +2049,321 @@
           </div>
         </div>
 
+        <!-- Browser Cleaner Page -->
+        <div class="feature-page hidden" id="browserCleanerPage">
+          <div class="feature-header">
+            <div class="feature-heading">
+              <h2 class="feature-title">Browser Cleaner</h2>
+              <p class="feature-subtitle">
+                Remove browsing history, cookies, and cached data from your browsers. <a href="#">Learn more</a>
+              </p>
+            </div>
+            <button class="feature-menu-btn" aria-label="Menu">
+              <div class="feature-menu-icon">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="5" r="1.5" fill="#444444"/>
+                  <circle cx="10" cy="10" r="1.5" fill="#444444"/>
+                  <circle cx="10" cy="15" r="1.5" fill="#444444"/>
+                </svg>
+              </div>
+            </button>
+          </div>
+          <div class="feature-content">
+            <div class="feature-illustration">
+              <img src="Ilustrations/illu_l_111.svg" alt="Browser Cleaner">
+            </div>
+            <div class="feature-info">
+              <h3 class="feature-info-title">Clean browser data to protect your privacy</h3>
+              <p class="feature-info-text">
+                Next automatic scan scheduled for June 10, 2025 at 4:00pm. <a href="#">Change</a>
+              </p>
+            </div>
+            <div class="feature-actions">
+              <button class="btn btn-primary feature-start-btn">Start Scan</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Duplicate Finder Page -->
+        <div class="feature-page hidden" id="duplicateFinderPage">
+          <div class="feature-header">
+            <div class="feature-heading">
+              <h2 class="feature-title">Duplicate Finder</h2>
+              <p class="feature-subtitle">
+                Find and remove duplicate files to free up storage space. <a href="#">Learn more</a>
+              </p>
+            </div>
+            <button class="feature-menu-btn" aria-label="Menu">
+              <div class="feature-menu-icon">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="5" r="1.5" fill="#444444"/>
+                  <circle cx="10" cy="10" r="1.5" fill="#444444"/>
+                  <circle cx="10" cy="15" r="1.5" fill="#444444"/>
+                </svg>
+              </div>
+            </button>
+          </div>
+          <div class="feature-content">
+            <div class="feature-illustration">
+              <img src="Ilustrations/illu_l_111.svg" alt="Duplicate Finder">
+            </div>
+            <div class="feature-info">
+              <h3 class="feature-info-title">Find identical files and reclaim wasted space</h3>
+              <p class="feature-info-text">
+                Next automatic scan scheduled for June 10, 2025 at 4:00pm. <a href="#">Change</a>
+              </p>
+            </div>
+            <div class="feature-actions">
+              <button class="btn btn-primary feature-start-btn">Start Scan</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo Cleaner Page -->
+        <div class="feature-page hidden" id="photoCleanerPage">
+          <div class="feature-header">
+            <div class="feature-heading">
+              <h2 class="feature-title">Photo Cleaner</h2>
+              <p class="feature-subtitle">
+                Find and remove similar or blurry photos to organize your library. <a href="#">Learn more</a>
+              </p>
+            </div>
+            <button class="feature-menu-btn" aria-label="Menu">
+              <div class="feature-menu-icon">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="5" r="1.5" fill="#444444"/>
+                  <circle cx="10" cy="10" r="1.5" fill="#444444"/>
+                  <circle cx="10" cy="15" r="1.5" fill="#444444"/>
+                </svg>
+              </div>
+            </button>
+          </div>
+          <div class="feature-content">
+            <div class="feature-illustration">
+              <img src="Ilustrations/illu_l_111.svg" alt="Photo Cleaner">
+            </div>
+            <div class="feature-info">
+              <h3 class="feature-info-title">Clean up your photo library and remove duplicates</h3>
+              <p class="feature-info-text">
+                Next automatic scan scheduled for June 10, 2025 at 4:00pm. <a href="#">Change</a>
+              </p>
+            </div>
+            <div class="feature-actions">
+              <button class="btn btn-primary feature-start-btn">Start Scan</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- App Uninstaller Page -->
+        <div class="feature-page hidden" id="appUninstallerPage">
+          <div class="feature-header">
+            <div class="feature-heading">
+              <h2 class="feature-title">App Uninstaller</h2>
+              <p class="feature-subtitle">
+                Completely remove applications and their leftover files. <a href="#">Learn more</a>
+              </p>
+            </div>
+            <button class="feature-menu-btn" aria-label="Menu">
+              <div class="feature-menu-icon">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="5" r="1.5" fill="#444444"/>
+                  <circle cx="10" cy="10" r="1.5" fill="#444444"/>
+                  <circle cx="10" cy="15" r="1.5" fill="#444444"/>
+                </svg>
+              </div>
+            </button>
+          </div>
+          <div class="feature-content">
+            <div class="feature-illustration">
+              <img src="Ilustrations/illu_l_111.svg" alt="App Uninstaller">
+            </div>
+            <div class="feature-info">
+              <h3 class="feature-info-title">Remove apps completely with all associated files</h3>
+              <p class="feature-info-text">
+                Select applications to uninstall and free up storage space.
+              </p>
+            </div>
+            <div class="feature-actions">
+              <button class="btn btn-primary feature-start-btn">Start Scan</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Startup Manager Page -->
+        <div class="feature-page hidden" id="startupManagerPage">
+          <div class="feature-header">
+            <div class="feature-heading">
+              <h2 class="feature-title">Startup Manager</h2>
+              <p class="feature-subtitle">
+                Manage applications that launch when your Mac starts. <a href="#">Learn more</a>
+              </p>
+            </div>
+            <button class="feature-menu-btn" aria-label="Menu">
+              <div class="feature-menu-icon">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="5" r="1.5" fill="#444444"/>
+                  <circle cx="10" cy="10" r="1.5" fill="#444444"/>
+                  <circle cx="10" cy="15" r="1.5" fill="#444444"/>
+                </svg>
+              </div>
+            </button>
+          </div>
+          <div class="feature-content">
+            <div class="feature-illustration">
+              <img src="Ilustrations/illu_l_111.svg" alt="Startup Manager">
+            </div>
+            <div class="feature-info">
+              <h3 class="feature-info-title">Control which apps run at startup to speed up boot time</h3>
+              <p class="feature-info-text">
+                Disable unnecessary startup items to improve performance.
+              </p>
+            </div>
+            <div class="feature-actions">
+              <button class="btn btn-primary feature-start-btn">Start Scan</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- System Monitor Page -->
+        <div class="feature-page hidden" id="systemMonitorPage">
+          <div class="feature-header">
+            <div class="feature-heading">
+              <h2 class="feature-title">System Monitor</h2>
+              <p class="feature-subtitle">
+                Monitor your Mac's CPU, memory, and disk usage in real-time. <a href="#">Learn more</a>
+              </p>
+            </div>
+            <button class="feature-menu-btn" aria-label="Menu">
+              <div class="feature-menu-icon">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="5" r="1.5" fill="#444444"/>
+                  <circle cx="10" cy="10" r="1.5" fill="#444444"/>
+                  <circle cx="10" cy="15" r="1.5" fill="#444444"/>
+                </svg>
+              </div>
+            </button>
+          </div>
+          <div class="feature-content">
+            <div class="feature-illustration">
+              <img src="Ilustrations/illu_l_111.svg" alt="System Monitor">
+            </div>
+            <div class="feature-info">
+              <h3 class="feature-info-title">Keep track of your system's health and performance</h3>
+              <p class="feature-info-text">
+                View real-time statistics about your Mac's resources.
+              </p>
+            </div>
+            <div class="feature-actions">
+              <button class="btn btn-primary feature-start-btn">View Monitor</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Statistics Page -->
+        <div class="feature-page hidden" id="statisticsPage">
+          <div class="feature-header">
+            <div class="feature-heading">
+              <h2 class="feature-title">Statistics</h2>
+              <p class="feature-subtitle">
+                View your cleaning history and storage savings over time. <a href="#">Learn more</a>
+              </p>
+            </div>
+            <button class="feature-menu-btn" aria-label="Menu">
+              <div class="feature-menu-icon">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="5" r="1.5" fill="#444444"/>
+                  <circle cx="10" cy="10" r="1.5" fill="#444444"/>
+                  <circle cx="10" cy="15" r="1.5" fill="#444444"/>
+                </svg>
+              </div>
+            </button>
+          </div>
+          <div class="feature-content">
+            <div class="feature-illustration">
+              <img src="Ilustrations/chart.svg" alt="Statistics">
+            </div>
+            <div class="feature-info">
+              <h3 class="feature-info-title">Track your cleaning activity and space saved</h3>
+              <p class="feature-info-text">
+                See detailed reports of your cleanup history.
+              </p>
+            </div>
+            <div class="feature-actions">
+              <button class="btn btn-primary feature-start-btn">View Statistics</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings Page -->
+        <div class="feature-page hidden" id="settingsPage">
+          <div class="feature-header">
+            <div class="feature-heading">
+              <h2 class="feature-title">Settings</h2>
+              <p class="feature-subtitle">
+                Customize Norton Utilities Ultimate to fit your needs. <a href="#">Learn more</a>
+              </p>
+            </div>
+            <button class="feature-menu-btn" aria-label="Menu">
+              <div class="feature-menu-icon">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="5" r="1.5" fill="#444444"/>
+                  <circle cx="10" cy="10" r="1.5" fill="#444444"/>
+                  <circle cx="10" cy="15" r="1.5" fill="#444444"/>
+                </svg>
+              </div>
+            </button>
+          </div>
+          <div class="feature-content">
+            <div class="feature-illustration">
+              <img src="Ilustrations/illu_l_111.svg" alt="Settings">
+            </div>
+            <div class="feature-info">
+              <h3 class="feature-info-title">Configure app preferences and scan schedules</h3>
+              <p class="feature-info-text">
+                Adjust settings to optimize your cleaning experience.
+              </p>
+            </div>
+            <div class="feature-actions">
+              <button class="btn btn-primary feature-start-btn">Open Settings</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Account Page -->
+        <div class="feature-page hidden" id="accountPage">
+          <div class="feature-header">
+            <div class="feature-heading">
+              <h2 class="feature-title">Account</h2>
+              <p class="feature-subtitle">
+                Manage your Norton account and subscription. <a href="#">Learn more</a>
+              </p>
+            </div>
+            <button class="feature-menu-btn" aria-label="Menu">
+              <div class="feature-menu-icon">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="5" r="1.5" fill="#444444"/>
+                  <circle cx="10" cy="10" r="1.5" fill="#444444"/>
+                  <circle cx="10" cy="15" r="1.5" fill="#444444"/>
+                </svg>
+              </div>
+            </button>
+          </div>
+          <div class="feature-content">
+            <div class="feature-illustration">
+              <img src="Ilustrations/illu_l_111.svg" alt="Account">
+            </div>
+            <div class="feature-info">
+              <h3 class="feature-info-title">View and manage your Norton subscription</h3>
+              <p class="feature-info-text">
+                Check your subscription status and account details.
+              </p>
+            </div>
+            <div class="feature-actions">
+              <button class="btn btn-primary feature-start-btn">Manage Account</button>
+            </div>
+          </div>
+        </div>
+
         <!-- Disk Cleaner Scanning Page -->
         <div class="disk-cleaner-scanning-page hidden" id="diskCleanerScanningPage">
           <div class="disk-cleaner-scan-header">
@@ -2173,6 +2631,24 @@
       const diskCleanerScanningPage = document.getElementById('diskCleanerScanningPage');
       const scanningPage = document.getElementById('scanningPage');
       const dashboardPage = document.getElementById('dashboardPage');
+      
+      // Feature pages
+      const browserCleanerPage = document.getElementById('browserCleanerPage');
+      const duplicateFinderPage = document.getElementById('duplicateFinderPage');
+      const photoCleanerPage = document.getElementById('photoCleanerPage');
+      const appUninstallerPage = document.getElementById('appUninstallerPage');
+      const startupManagerPage = document.getElementById('startupManagerPage');
+      const systemMonitorPage = document.getElementById('systemMonitorPage');
+      const statisticsPage = document.getElementById('statisticsPage');
+      const settingsPage = document.getElementById('settingsPage');
+      const accountPage = document.getElementById('accountPage');
+      
+      // All pages array for easy hiding
+      const allPages = [
+        welcomePage, diskCleanerPage, diskCleanerScanningPage, scanningPage, dashboardPage,
+        browserCleanerPage, duplicateFinderPage, photoCleanerPage, appUninstallerPage,
+        startupManagerPage, systemMonitorPage, statisticsPage, settingsPage, accountPage
+      ];
       const startScanBtn = document.getElementById('startScanBtn');
       const diskCleanerStartBtn = document.getElementById('diskCleanerStartBtn');
       const diskCleanerStopBtn = document.getElementById('diskCleanerStopBtn');
@@ -2189,56 +2665,94 @@
       let diskCleanerProgress = 0;
 
       // Function to show welcome page
+      // Helper function to hide all pages
+      function hideAllPages() {
+        allPages.forEach(page => {
+          if (page) page.classList.add('hidden');
+        });
+      }
+
       function showWelcomePage() {
+        hideAllPages();
         welcomePage.classList.remove('hidden');
-        diskCleanerPage.classList.add('hidden');
-        diskCleanerScanningPage.classList.add('hidden');
-        scanningPage.classList.add('hidden');
-        dashboardPage.classList.add('hidden');
         resetScan();
         resetDiskCleanerScan();
       }
 
       // Function to show disk cleaner page
       function showDiskCleanerPage() {
-        welcomePage.classList.add('hidden');
+        hideAllPages();
         diskCleanerPage.classList.remove('hidden');
-        diskCleanerScanningPage.classList.add('hidden');
-        scanningPage.classList.add('hidden');
-        dashboardPage.classList.add('hidden');
         resetScan();
         resetDiskCleanerScan();
       }
 
       // Function to show scanning page
       function showScanningPage() {
-        welcomePage.classList.add('hidden');
-        diskCleanerPage.classList.add('hidden');
-        diskCleanerScanningPage.classList.add('hidden');
+        hideAllPages();
         scanningPage.classList.remove('hidden');
-        dashboardPage.classList.add('hidden');
         startScanAnimation();
       }
 
       // Function to show disk cleaner scanning page
       function showDiskCleanerScanningPage() {
-        welcomePage.classList.add('hidden');
-        diskCleanerPage.classList.add('hidden');
+        hideAllPages();
         diskCleanerScanningPage.classList.remove('hidden');
-        scanningPage.classList.add('hidden');
-        dashboardPage.classList.add('hidden');
         startDiskCleanerScanAnimation();
       }
 
       // Function to show dashboard page
       function showDashboardPage() {
-        welcomePage.classList.add('hidden');
-        diskCleanerPage.classList.add('hidden');
-        diskCleanerScanningPage.classList.add('hidden');
-        scanningPage.classList.add('hidden');
+        hideAllPages();
         dashboardPage.classList.remove('hidden');
         resetScan();
         resetDiskCleanerScan();
+      }
+
+      // Feature page show functions
+      function showBrowserCleanerPage() {
+        hideAllPages();
+        browserCleanerPage.classList.remove('hidden');
+      }
+
+      function showDuplicateFinderPage() {
+        hideAllPages();
+        duplicateFinderPage.classList.remove('hidden');
+      }
+
+      function showPhotoCleanerPage() {
+        hideAllPages();
+        photoCleanerPage.classList.remove('hidden');
+      }
+
+      function showAppUninstallerPage() {
+        hideAllPages();
+        appUninstallerPage.classList.remove('hidden');
+      }
+
+      function showStartupManagerPage() {
+        hideAllPages();
+        startupManagerPage.classList.remove('hidden');
+      }
+
+      function showSystemMonitorPage() {
+        hideAllPages();
+        systemMonitorPage.classList.remove('hidden');
+      }
+
+      function showStatisticsPage() {
+        hideAllPages();
+        statisticsPage.classList.remove('hidden');
+      }
+
+      function showSettingsPage() {
+        hideAllPages();
+        settingsPage.classList.remove('hidden');
+      }
+
+      function showAccountPage() {
+        hideAllPages();
+        accountPage.classList.remove('hidden');
       }
 
       // Reset scan progress
@@ -2341,10 +2855,40 @@
 
           // Handle page navigation
           const page = this.getAttribute('data-page');
-          if (page === 'dashboard') {
-            showWelcomePage();
-          } else if (page === 'disk-cleaner') {
-            showDiskCleanerPage();
+          switch (page) {
+            case 'dashboard':
+              showWelcomePage();
+              break;
+            case 'disk-cleaner':
+              showDiskCleanerPage();
+              break;
+            case 'browser-cleaner':
+              showBrowserCleanerPage();
+              break;
+            case 'duplicate-finder':
+              showDuplicateFinderPage();
+              break;
+            case 'photo-cleaner':
+              showPhotoCleanerPage();
+              break;
+            case 'app-uninstaller':
+              showAppUninstallerPage();
+              break;
+            case 'startup-manager':
+              showStartupManagerPage();
+              break;
+            case 'system-monitor':
+              showSystemMonitorPage();
+              break;
+            case 'statistics':
+              showStatisticsPage();
+              break;
+            case 'settings':
+              showSettingsPage();
+              break;
+            case 'account':
+              showAccountPage();
+              break;
           }
         });
       });
