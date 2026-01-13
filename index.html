@@ -803,6 +803,15 @@
       justify-content: space-between;
     }
 
+    .cleaner-link {
+      cursor: pointer;
+      transition: opacity var(--timing-fast) var(--easing);
+    }
+
+    .cleaner-link:hover {
+      opacity: 0.8;
+    }
+
     .cleaner-info {
       display: flex;
       flex-direction: column;
@@ -1994,7 +2003,7 @@
                   </svg>
                 </div>
               </label>
-              <div class="cleaner-content">
+              <div class="cleaner-content cleaner-link" data-target="disk-cleaner">
                 <div class="cleaner-info">
                   <span class="cleaner-title">Disk Cleaner</span>
                   <span class="cleaner-desc">Remove temporary files you no longer need.</span>
@@ -2353,6 +2362,20 @@
           showDiskCleanerPage();
         });
       }
+
+      // Cleaner item links - navigate to specific pages
+      const cleanerLinks = document.querySelectorAll('.cleaner-link');
+      cleanerLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          // Don't navigate if clicking on checkbox
+          if (e.target.closest('.checkbox-wrapper')) return;
+          
+          const target = this.getAttribute('data-target');
+          if (target === 'disk-cleaner') {
+            showDiskCleanerPage();
+          }
+        });
+      });
 
       // Checkbox functionality
       const checkboxes = document.querySelectorAll('.checkbox-input');
