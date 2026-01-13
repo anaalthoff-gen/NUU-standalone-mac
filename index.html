@@ -642,6 +642,86 @@
       letter-spacing: var(--fonts-letter-spacing-body-1);
     }
 
+    /* ========================================
+       COMPLETION CARD (After Cleanup)
+       ======================================== */
+    .completion-card {
+      background: var(--colors-surface);
+      border-radius: var(--radius-tile);
+      box-shadow: var(--shadow-tile);
+      padding: var(--spacing-tile-padding);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .completion-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .completion-info {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .completion-label {
+      font-size: var(--fonts-size-body-1);
+      font-weight: var(--fonts-weight-body-1);
+      line-height: var(--fonts-line-height-body-1);
+      color: var(--colors-on-surface-secondary);
+      letter-spacing: var(--fonts-letter-spacing-body-1);
+    }
+
+    .completion-result {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .completion-icon {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+    }
+
+    .completion-amount {
+      display: flex;
+      align-items: baseline;
+      gap: 0;
+    }
+
+    .completion-value {
+      font-size: var(--fonts-size-h2);
+      font-weight: var(--fonts-weight-h2);
+      line-height: var(--fonts-line-height-h2);
+      color: var(--colors-success);
+      letter-spacing: var(--fonts-letter-spacing-h2);
+    }
+
+    .completion-text {
+      font-size: var(--fonts-size-h2);
+      font-weight: var(--fonts-weight-h2);
+      line-height: var(--fonts-line-height-h2);
+      color: var(--colors-on-surface);
+      letter-spacing: var(--fonts-letter-spacing-h2);
+    }
+
+    .completion-message {
+      padding-top: 8px;
+    }
+
+    .completion-message p {
+      font-size: var(--fonts-size-body-1);
+      font-weight: var(--fonts-weight-body-1);
+      line-height: var(--fonts-line-height-body-1);
+      color: var(--colors-on-surface-secondary);
+      letter-spacing: var(--fonts-letter-spacing-body-1);
+      margin: 0;
+    }
 
     /* ========================================
        CLEANER LIST (Feature Row Styles)
@@ -1642,6 +1722,29 @@
           </div>
         </section>
 
+        <!-- Completion Card (shown after cleanup) -->
+        <section class="completion-card hidden" id="completionCard">
+          <div class="completion-header">
+            <div class="completion-info">
+              <span class="completion-label">Cleaning complete</span>
+              <div class="completion-result">
+                <svg class="completion-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="10" fill="var(--colors-success)"/>
+                  <path d="M9 12l2 2 4-4" stroke="#242424" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div class="completion-amount">
+                  <span class="completion-value" id="completionValue">126.9 GB (12,457 items)</span>
+                  <span class="completion-text"> cleaned</span>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-secondary" id="closeCompletionBtn">Close</button>
+          </div>
+          <div class="completion-message">
+            <p>Want to clean more? Explore your cleanup tools to discover what's possible.</p>
+          </div>
+        </section>
+
         <!-- Additional Issues Section -->
         <section class="issues-section">
           <h2 class="section-title">Additional issues</h2>
@@ -1848,6 +1951,10 @@
 
       // Clean button functionality
       const cleanBtn = document.getElementById('cleanBtn');
+      const scanCard = document.querySelector('.scan-card');
+      const completionCard = document.getElementById('completionCard');
+      const completionValue = document.getElementById('completionValue');
+      const closeCompletionBtn = document.getElementById('closeCompletionBtn');
       const cleanerItems = [
         { id: 'cleaner-disk', statusId: 'cleaner-disk-status', valueId: 'cleaner-disk-value', duration: 2000 },
         { id: 'cleaner-browser', statusId: 'cleaner-browser-status', valueId: 'cleaner-browser-value', duration: 1500 }
@@ -1857,6 +1964,9 @@
         cleanBtn.addEventListener('click', function() {
           // Disable the button
           cleanBtn.disabled = true;
+
+          let completedCount = 0;
+          const totalItems = cleanerItems.length;
 
           // Start cleaning each item sequentially
           cleanerItems.forEach((item, index) => {
@@ -1885,8 +1995,46 @@
                 statusIcon.classList.remove('status-progress');
                 statusIcon.classList.add('status-success');
                 statusIcon.innerHTML = '<circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M9 12l2 2 4-4" stroke="#242424" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+                
+                completedCount++;
+                
+                // When all items are cleaned, show completion card
+                if (completedCount === totalItems) {
+                  setTimeout(() => {
+                    if (scanCard) scanCard.classList.add('hidden');
+                    if (completionCard) {
+                      completionCard.classList.remove('hidden');
+                      // Update completion value with actual cleaned amount
+                      if (completionValue) {
+                        completionValue.textContent = '126.9 GB (12,457 items)';
+                      }
+                    }
+                  }, 300);
+                }
               }, item.duration);
             }, index * 500); // Stagger start times
+          });
+        });
+      }
+
+      // Close completion card button
+      if (closeCompletionBtn) {
+        closeCompletionBtn.addEventListener('click', function() {
+          // Hide completion card and show scan card again (for rescan)
+          if (completionCard) completionCard.classList.add('hidden');
+          if (scanCard) scanCard.classList.remove('hidden');
+          // Reset clean button
+          if (cleanBtn) cleanBtn.disabled = false;
+          // Reset cleaner items
+          cleanerItems.forEach(item => {
+            const cleanerEl = document.getElementById(item.id);
+            const statusEl = document.getElementById(item.statusId);
+            const valueEl = document.getElementById(item.valueId);
+            if (cleanerEl) {
+              cleanerEl.classList.remove('cleaning', 'cleaned');
+            }
+            if (statusEl) statusEl.classList.add('hidden');
+            if (valueEl) valueEl.classList.remove('hidden');
           });
         });
       }
