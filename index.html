@@ -10,20 +10,37 @@
   <style>
     /* ========================================
        DESIGN TOKENS / CSS VARIABLES
+       Extracted from Figma N360 O2 Templates
        ======================================== */
     :root {
-      /* Colors */
-      --color-desktop-menu: #242424;
-      --color-on-desktop-menu: #FFFFFF;
-      --color-on-desktop-menu-secondary: rgba(255, 255, 255, 0.75);
-      --color-on-desktop-menu-extra-light: rgba(255, 255, 255, 0.08);
-      --color-brand: #FEEB29;
-      --color-background: #FBFAF9;
-      --color-on-background: #242424;
-      --color-surface: #FFFFFF;
+      /* Colors - Desktop Menu */
+      --colors-desktop-menu: #242424;
+      --colors-desktop-on-menu: #FFFFFF;
+      --colors-desktop-on-menu-extra-light: rgba(255, 255, 255, 0.08);
+      --colors-desktop-on-menu-light: rgba(255, 255, 255, 0.15);
+      --colors-desktop-on-menu-success: #018850;
       
-      /* Typography */
-      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      /* Colors - Brand */
+      --colors-brand: #FEEB29;
+      
+      /* Colors - Background */
+      --colors-background: #FBFAF9;
+      --colors-on-background: #242424;
+      --colors-surface: #FFFFFF;
+      
+      /* Typography - Body 2 */
+      --fonts-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --fonts-size-body-2: 13px;
+      --fonts-weight-body-2: 400;
+      --fonts-weight-body-2-medium: 500;
+      --fonts-line-height-body-2: 20px;
+      --fonts-letter-spacing-body-2: -0.3px;
+      
+      /* Typography - H4 */
+      --fonts-size-h4: 15px;
+      --fonts-weight-h4: 700;
+      --fonts-line-height-h4: 24px;
+      --fonts-letter-spacing-h4: -0.3px;
       
       /* Shadows */
       --shadow-window: 0px 32px 64px 0px rgba(0, 0, 0, 0.28), 
@@ -49,7 +66,7 @@
     }
 
     body {
-      font-family: var(--font-family);
+      font-family: var(--fonts-family-primary);
       background: #E8E1D9;
       min-height: 100vh;
       display: flex;
@@ -64,7 +81,7 @@
     .app-window {
       width: 1008px;
       height: 672px;
-      background: var(--color-desktop-menu);
+      background: var(--colors-desktop-menu);
       border-radius: 20px;
       box-shadow: var(--shadow-window);
       border: 1px solid rgba(117, 117, 117, 0.4);
@@ -137,7 +154,7 @@
       left: 0;
       bottom: 0;
       width: var(--sidebar-width);
-      background: var(--color-desktop-menu);
+      background: var(--colors-desktop-menu);
       display: flex;
       flex-direction: column;
       border-bottom-left-radius: 8px;
@@ -149,7 +166,7 @@
       left: 1px;
       bottom: 2px;
       width: calc(var(--sidebar-width) - 1px);
-      background: var(--color-desktop-menu);
+      background: var(--colors-desktop-menu);
       border-bottom-left-radius: 8px;
     }
 
@@ -160,46 +177,55 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      gap: 24px;
-      padding: 16px;
-      margin-top: 37px;
+      flex: 1;
+      min-height: 0;
+      width: 100%;
     }
 
     .nav-section {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      width: 100%;
     }
 
+    /* Divider between sections */
+    .nav-divider {
+      height: 24px;
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    /* Menu Item - matches Figma exactly */
     .menu-item {
       display: flex;
       align-items: center;
       gap: 8px;
-      height: 40px;
-      padding: 8px;
-      border-radius: 20px;
+      padding: 8px 16px 8px 24px;
       cursor: pointer;
       transition: background var(--timing-fast) var(--easing);
       position: relative;
       text-decoration: none;
+      width: 100%;
+      overflow: hidden;
     }
 
     .menu-item:hover {
-      background: var(--color-on-desktop-menu-extra-light);
+      background: var(--colors-desktop-on-menu-extra-light);
     }
 
     .menu-item.active {
-      background: var(--color-on-desktop-menu-extra-light);
+      background: var(--colors-desktop-on-menu-extra-light);
     }
 
+    /* Yellow highlight bar on left for active item */
     .menu-item.active::before {
       content: '';
       position: absolute;
-      left: -8px;
+      left: 0;
       top: 0;
       bottom: 0;
       width: 4px;
-      background: var(--color-brand);
+      background: var(--colors-brand);
       border-radius: 0 4px 4px 0;
     }
 
@@ -217,15 +243,16 @@
 
     .menu-item-label {
       flex: 1;
-      font-size: 13px;
-      font-weight: 400;
-      line-height: 20px;
-      letter-spacing: -0.3px;
-      color: var(--color-on-desktop-menu);
+      font-size: var(--fonts-size-body-2);
+      font-weight: var(--fonts-weight-body-2);
+      line-height: var(--fonts-line-height-body-2);
+      letter-spacing: var(--fonts-letter-spacing-body-2);
+      color: var(--colors-desktop-on-menu);
+      white-space: nowrap;
     }
 
     .menu-item.active .menu-item-label {
-      font-weight: 500;
+      font-weight: var(--fonts-weight-body-2-medium);
     }
 
     /* ========================================
@@ -237,7 +264,7 @@
       right: 4px;
       bottom: 6px;
       left: var(--sidebar-width);
-      background: var(--color-background);
+      background: var(--colors-background);
       border-radius: 16px;
       overflow: hidden;
     }
@@ -258,8 +285,8 @@
       font-size: 27px;
       font-weight: 800;
       line-height: 36px;
-      letter-spacing: -0.3px;
-      color: var(--color-on-background);
+      letter-spacing: var(--fonts-letter-spacing-body-2);
+      color: var(--colors-on-background);
     }
 
     /* ========================================
@@ -271,8 +298,8 @@
       justify-content: center;
       height: calc(100% - 80px);
       color: rgba(36, 36, 36, 0.3);
-      font-size: 15px;
-      font-weight: 500;
+      font-size: var(--fonts-size-h4);
+      font-weight: var(--fonts-weight-body-2-medium);
     }
   </style>
 </head>
@@ -295,7 +322,7 @@
       <div class="sidebar-background"></div>
       
       <nav class="main-nav">
-        <!-- Primary Navigation -->
+        <!-- Dashboard (Home) - Active by default -->
         <div class="nav-section">
           <a href="#" class="menu-item active" data-page="dashboard">
             <div class="menu-item-icon">
@@ -306,7 +333,13 @@
             </div>
             <span class="menu-item-label">Dashboard</span>
           </a>
-          
+        </div>
+        
+        <!-- Divider -->
+        <div class="nav-divider"></div>
+        
+        <!-- Main Tools Section -->
+        <div class="nav-section">
           <a href="#" class="menu-item" data-page="disk-cleaner">
             <div class="menu-item-icon">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -394,6 +427,9 @@
             <span class="menu-item-label">Statistics</span>
           </a>
         </div>
+        
+        <!-- Divider -->
+        <div class="nav-divider"></div>
         
         <!-- Secondary Navigation -->
         <div class="nav-section">
