@@ -259,6 +259,14 @@
       background: var(--btn-primary-bg-pressed);
     }
 
+    .btn-primary:disabled {
+      background: rgba(68, 68, 68, 0.1);
+      border-color: rgba(68, 68, 68, 0.05);
+      color: rgba(68, 68, 68, 0.5);
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
     /* Secondary Button (White with border) */
     .btn-secondary {
       background: var(--btn-secondary-bg);
@@ -774,6 +782,82 @@
       width: 24px;
       height: 24px;
       color: var(--colors-on-background);
+    }
+
+    /* Cleaning States */
+    .cleaner-item.cleaning .cleaner-title,
+    .cleaner-item.cleaning .cleaner-desc,
+    .cleaner-item.cleaning .cleaner-value {
+      color: rgba(36, 36, 36, 0.5);
+    }
+
+    .cleaner-item.cleaning .checkbox-input {
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+
+    .cleaner-item.cleaned .cleaner-title,
+    .cleaner-item.cleaned .cleaner-desc,
+    .cleaner-item.cleaned .cleaner-value {
+      color: rgba(36, 36, 36, 0.5);
+    }
+
+    .cleaner-item.cleaned .checkbox-input {
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+
+    .cleaner-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 120px;
+      justify-content: flex-end;
+    }
+
+    .cleaner-item.cleaning .cleaner-value,
+    .cleaner-item.cleaned .cleaner-value {
+      display: none;
+    }
+
+    .cleaner-item.cleaning .chevron-btn,
+    .cleaner-item.cleaned .chevron-btn {
+      display: none;
+    }
+
+    .cleaner-status-text {
+      font-size: var(--fonts-size-body-2);
+      font-weight: var(--fonts-weight-body-2);
+      line-height: var(--fonts-line-height-body-2);
+      color: var(--colors-on-surface);
+      letter-spacing: var(--fonts-letter-spacing-body-2);
+    }
+
+    .cleaner-status-icon {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .status-progress {
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .status-success {
+      color: var(--colors-success);
+    }
+
+    .hidden {
+      display: none !important;
     }
 
     /* ========================================
@@ -1488,12 +1572,12 @@
                 <span class="clean-items">(12,457 items)</span>
               </div>
             </div>
-            <button class="btn btn-primary">Clean</button>
+            <button class="btn btn-primary" id="cleanBtn">Clean</button>
           </div>
 
           <div class="cleaner-list">
             <!-- Disk Cleaner -->
-            <div class="cleaner-item">
+            <div class="cleaner-item" id="cleaner-disk">
               <label class="checkbox-wrapper">
                 <input type="checkbox" class="checkbox-input" checked>
                 <div class="checkbox-visual">
@@ -1508,7 +1592,13 @@
                   <span class="cleaner-desc">Remove temporary files you no longer need.</span>
                 </div>
                 <div class="cleaner-right">
-                  <span class="cleaner-value">123.9 GB</span>
+                  <span class="cleaner-value" id="cleaner-disk-value">123.9 GB</span>
+                  <div class="cleaner-status hidden" id="cleaner-disk-status">
+                    <span class="cleaner-status-text"></span>
+                    <svg class="cleaner-status-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-dasharray="31.416" stroke-dashoffset="23.562" stroke-linecap="round"/>
+                    </svg>
+                  </div>
                   <button class="chevron-btn">
                     <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1519,7 +1609,7 @@
             </div>
 
             <!-- Browser Cleaner -->
-            <div class="cleaner-item">
+            <div class="cleaner-item" id="cleaner-browser">
               <label class="checkbox-wrapper">
                 <input type="checkbox" class="checkbox-input" checked>
                 <div class="checkbox-visual">
@@ -1534,7 +1624,13 @@
                   <span class="cleaner-desc">Clear cached data, cookies, and history.</span>
                 </div>
                 <div class="cleaner-right">
-                  <span class="cleaner-value">2,273 items</span>
+                  <span class="cleaner-value" id="cleaner-browser-value">2,273 items</span>
+                  <div class="cleaner-status hidden" id="cleaner-browser-status">
+                    <span class="cleaner-status-text"></span>
+                    <svg class="cleaner-status-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-dasharray="31.416" stroke-dashoffset="23.562" stroke-linecap="round"/>
+                    </svg>
+                  </div>
                   <button class="chevron-btn">
                     <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1748,6 +1844,51 @@
       function updateCleanTotal() {
         // In a real app, this would calculate based on actual data
         console.log('Updating clean total...');
+      }
+
+      // Clean button functionality
+      const cleanBtn = document.getElementById('cleanBtn');
+      const cleanerItems = [
+        { id: 'cleaner-disk', statusId: 'cleaner-disk-status', valueId: 'cleaner-disk-value', duration: 2000 },
+        { id: 'cleaner-browser', statusId: 'cleaner-browser-status', valueId: 'cleaner-browser-value', duration: 1500 }
+      ];
+
+      if (cleanBtn) {
+        cleanBtn.addEventListener('click', function() {
+          // Disable the button
+          cleanBtn.disabled = true;
+
+          // Start cleaning each item sequentially
+          cleanerItems.forEach((item, index) => {
+            setTimeout(() => {
+              const cleanerEl = document.getElementById(item.id);
+              const statusEl = document.getElementById(item.statusId);
+              const valueEl = document.getElementById(item.valueId);
+              const statusText = statusEl.querySelector('.cleaner-status-text');
+              const statusIcon = statusEl.querySelector('.cleaner-status-icon');
+
+              // Show status, hide value
+              statusEl.classList.remove('hidden');
+              valueEl.classList.add('hidden');
+
+              // Set cleaning state
+              cleanerEl.classList.add('cleaning');
+              statusText.textContent = 'Cleaning...';
+              statusIcon.classList.add('status-progress');
+              statusIcon.style.color = 'var(--colors-accent)';
+
+              // After duration, mark as cleaned
+              setTimeout(() => {
+                cleanerEl.classList.remove('cleaning');
+                cleanerEl.classList.add('cleaned');
+                statusText.textContent = 'Cleaned';
+                statusIcon.classList.remove('status-progress');
+                statusIcon.classList.add('status-success');
+                statusIcon.innerHTML = '<circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M9 12l2 2 4-4" stroke="#242424" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+              }, item.duration);
+            }, index * 500); // Stagger start times
+          });
+        });
       }
     })();
   </script>
