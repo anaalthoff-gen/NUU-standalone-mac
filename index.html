@@ -1322,6 +1322,136 @@
     }
 
     /* ========================================
+       DISK CLEANER PAGE STYLES
+       ======================================== */
+    .disk-cleaner-page {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      padding: 64px 32px 24px 32px;
+      gap: 64px;
+    }
+
+    .disk-cleaner-page.hidden {
+      display: none;
+    }
+
+    .disk-cleaner-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .disk-cleaner-heading {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 471px;
+    }
+
+    .disk-cleaner-title {
+      font-size: var(--fonts-size-h2);
+      font-weight: var(--fonts-weight-h2);
+      line-height: var(--fonts-line-height-h2);
+      letter-spacing: var(--fonts-letter-spacing-h2);
+      color: var(--colors-on-background);
+      margin: 0 0 8px 0;
+    }
+
+    .disk-cleaner-description {
+      font-size: var(--fonts-size-body-2);
+      font-weight: var(--fonts-weight-body-2);
+      line-height: var(--fonts-line-height-body-2);
+      color: var(--colors-on-background-secondary);
+      letter-spacing: var(--fonts-letter-spacing-body-2);
+    }
+
+    .disk-cleaner-description a {
+      color: var(--colors-on-background-secondary);
+      text-decoration: underline;
+      text-underline-position: from-font;
+    }
+
+    .disk-cleaner-back-btn {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--button-secondary-bg);
+      border: var(--button-secondary-border-width) solid var(--button-secondary-border-color);
+      border-radius: var(--radius-button);
+      cursor: pointer;
+      transition: all var(--timing-fast) var(--easing);
+      flex-shrink: 0;
+    }
+
+    .disk-cleaner-back-btn:hover {
+      background: var(--colors-background-state-b);
+    }
+
+    .disk-cleaner-back-btn svg {
+      width: 20px;
+      height: 20px;
+      color: var(--button-secondary-on-color);
+    }
+
+    .disk-cleaner-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      width: 100%;
+    }
+
+    .disk-cleaner-illustration {
+      width: 608px;
+      height: 241px;
+      flex-shrink: 0;
+    }
+
+    .disk-cleaner-illustration img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .disk-cleaner-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .disk-cleaner-info-title {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 28px;
+      letter-spacing: 0px;
+      color: var(--colors-on-background);
+      margin: 0;
+    }
+
+    .disk-cleaner-info-subtitle {
+      font-size: var(--fonts-size-body-2);
+      font-weight: var(--fonts-weight-body-2);
+      line-height: var(--fonts-line-height-body-2);
+      color: var(--colors-on-background-secondary);
+      letter-spacing: var(--fonts-letter-spacing-body-2);
+      margin: 0;
+    }
+
+    .disk-cleaner-info-subtitle a {
+      color: var(--colors-on-background-secondary);
+      text-decoration: underline;
+      text-underline-position: from-font;
+    }
+
+    /* ========================================
        SCANNING PAGE STYLES
        ======================================== */
     .scanning-page {
@@ -1681,7 +1811,7 @@
                       <circle cx="12" cy="12" r="10" stroke="#0061D3" stroke-width="2" stroke-dasharray="31.416" stroke-dashoffset="23.562" stroke-linecap="round" fill="none" class="status-progress-arc"/>
                     </svg>
                   </div>
-                  <button class="chevron-btn">
+                  <button class="chevron-btn" id="diskCleanerChevronBtn">
                     <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -1821,6 +1951,37 @@
         </section>
 
         </div><!-- End Dashboard Page -->
+
+        <!-- Disk Cleaner Page -->
+        <div class="disk-cleaner-page hidden" id="diskCleanerPage">
+          <div class="disk-cleaner-header">
+            <div class="disk-cleaner-heading">
+              <h2 class="disk-cleaner-title">Disk Cleaner</h2>
+              <p class="disk-cleaner-description">
+                Clean up unnecessary files to keep your Mac running smooth. <a href="#">Learn more</a>
+              </p>
+            </div>
+            <button class="disk-cleaner-back-btn" id="diskCleanerBackBtn">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="5" r="1.5" fill="currentColor"/>
+                <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+                <circle cx="12" cy="19" r="1.5" fill="currentColor"/>
+              </svg>
+            </button>
+          </div>
+          <div class="disk-cleaner-content">
+            <div class="disk-cleaner-illustration">
+              <img src="Ilustrations/illu_l_111.svg" alt="Disk Cleaner">
+            </div>
+            <div class="disk-cleaner-info">
+              <h3 class="disk-cleaner-info-title">Find and clean junk files to reclaim storage space</h3>
+              <p class="disk-cleaner-info-subtitle">
+                Next automatic scan scheduled for June 10, 2025 at 4:00pm. <a href="#">Change</a>
+              </p>
+            </div>
+            <button class="btn btn-primary" id="diskCleanerStartScanBtn">Start Scan</button>
+          </div>
+        </div>
 
       </div>
     </div>
@@ -2038,6 +2199,47 @@
             if (statusEl) statusEl.classList.add('hidden');
             if (valueEl) valueEl.classList.remove('hidden');
           });
+        });
+      }
+
+      // Disk Cleaner Page Navigation
+      const diskCleanerPage = document.getElementById('diskCleanerPage');
+      const diskCleanerChevronBtn = document.getElementById('diskCleanerChevronBtn');
+      const diskCleanerBackBtn = document.getElementById('diskCleanerBackBtn');
+      const diskCleanerStartScanBtn = document.getElementById('diskCleanerStartScanBtn');
+
+      // Function to show disk cleaner page
+      function showDiskCleanerPage() {
+        if (dashboardPage) dashboardPage.classList.add('hidden');
+        if (diskCleanerPage) diskCleanerPage.classList.remove('hidden');
+      }
+
+      // Function to hide disk cleaner page and show dashboard
+      function hideDiskCleanerPage() {
+        if (diskCleanerPage) diskCleanerPage.classList.add('hidden');
+        if (dashboardPage) dashboardPage.classList.remove('hidden');
+      }
+
+      // Disk Cleaner chevron button click
+      if (diskCleanerChevronBtn) {
+        diskCleanerChevronBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          showDiskCleanerPage();
+        });
+      }
+
+      // Disk Cleaner back button click
+      if (diskCleanerBackBtn) {
+        diskCleanerBackBtn.addEventListener('click', function() {
+          hideDiskCleanerPage();
+        });
+      }
+
+      // Disk Cleaner Start Scan button click
+      if (diskCleanerStartScanBtn) {
+        diskCleanerStartScanBtn.addEventListener('click', function() {
+          showScanningPage();
         });
       }
     })();
