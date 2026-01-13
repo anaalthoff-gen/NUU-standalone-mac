@@ -1478,11 +1478,60 @@
       display: none;
     }
 
-    .disk-cleaner-scanning-header {
+    .disk-cleaner-scan-header {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: flex-start;
+      width: 100%;
       margin-bottom: 24px;
+    }
+
+    .disk-cleaner-scan-title {
+      font-size: var(--fonts-size-h2);
+      font-weight: var(--fonts-weight-h2);
+      line-height: var(--fonts-line-height-h2);
+      letter-spacing: var(--fonts-letter-spacing-h2);
+      color: var(--colors-on-background);
+      margin: 0 0 8px 0;
+    }
+
+    .disk-cleaner-scan-progress-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .disk-cleaner-scan-progress-bar {
+      width: 100%;
+      height: 4px;
+      background: var(--colors-background-state-b);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .disk-cleaner-scan-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #3B82F6 0%, #60A5FA 100%);
+      border-radius: 2px;
+      transition: width 0.1s ease-out;
+    }
+
+    .disk-cleaner-scan-progress-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 32px;
+      width: 100%;
+    }
+
+    .disk-cleaner-scan-status-text {
+      font-size: var(--fonts-size-body-2);
+      font-weight: var(--fonts-weight-body-2);
+      line-height: var(--fonts-line-height-body-2);
+      letter-spacing: var(--fonts-letter-spacing-body-2);
+      color: var(--colors-on-background-secondary);
     }
 
     .disk-cleaner-scanning-content {
@@ -1850,22 +1899,17 @@
 
         <!-- Disk Cleaner Scanning Page -->
         <div class="disk-cleaner-scanning-page hidden" id="diskCleanerScanningPage">
-          <div class="disk-cleaner-scanning-header">
-            <div class="disk-cleaner-heading">
-              <h2 class="disk-cleaner-title">Disk Cleaner</h2>
-              <p class="disk-cleaner-subtitle">
-                Clean up unnecessary files to keep your Mac running smooth. <a href="#">Learn more</a>
-              </p>
-            </div>
-            <button class="disk-cleaner-menu-btn" aria-label="Menu">
-              <div class="disk-cleaner-menu-icon">
-                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="10" cy="5" r="1.5" fill="#444444"/>
-                  <circle cx="10" cy="10" r="1.5" fill="#444444"/>
-                  <circle cx="10" cy="15" r="1.5" fill="#444444"/>
-                </svg>
+          <div class="disk-cleaner-scan-header">
+            <h2 class="disk-cleaner-scan-title">Disk Cleaner</h2>
+            <div class="disk-cleaner-scan-progress-container">
+              <div class="disk-cleaner-scan-progress-bar">
+                <div class="disk-cleaner-scan-progress-fill" id="diskCleanerProgressFill"></div>
               </div>
-            </button>
+              <div class="disk-cleaner-scan-progress-info">
+                <span class="disk-cleaner-scan-status-text" id="diskCleanerStatusText">Scanning for system junk...</span>
+                <button class="btn btn-secondary" id="diskCleanerStopBtn">Stop scan</button>
+              </div>
+            </div>
           </div>
           <div class="disk-cleaner-scanning-content">
             <div class="disk-cleaner-scanning-illustration">
@@ -1874,9 +1918,6 @@
             <div class="disk-cleaner-scanning-info">
               <h3 class="disk-cleaner-scanning-title" id="diskCleanerScanTitle">Scanning... <span id="diskCleanerScanPercent">0%</span></h3>
               <p class="disk-cleaner-scanning-text">Hang in there!</p>
-            </div>
-            <div class="disk-cleaner-scanning-actions">
-              <button class="btn btn-secondary" id="diskCleanerStopBtn">Stop scan</button>
             </div>
           </div>
         </div>
@@ -2127,6 +2168,8 @@
       const diskCleanerStartBtn = document.getElementById('diskCleanerStartBtn');
       const diskCleanerStopBtn = document.getElementById('diskCleanerStopBtn');
       const diskCleanerScanPercent = document.getElementById('diskCleanerScanPercent');
+      const diskCleanerProgressFill = document.getElementById('diskCleanerProgressFill');
+      const diskCleanerStatusText = document.getElementById('diskCleanerStatusText');
       const stopScanBtn = document.getElementById('stopScanBtn');
       const scanProgressFill = document.getElementById('scanProgressFill');
       const scanPercentage = document.getElementById('scanPercentage');
@@ -2208,6 +2251,8 @@
         }
         diskCleanerProgress = 0;
         if (diskCleanerScanPercent) diskCleanerScanPercent.textContent = '0%';
+        if (diskCleanerProgressFill) diskCleanerProgressFill.style.width = '0%';
+        if (diskCleanerStatusText) diskCleanerStatusText.textContent = 'Scanning for system junk...';
       }
 
       // Start disk cleaner scan animation
@@ -2218,6 +2263,8 @@
           if (diskCleanerProgress >= 100) {
             diskCleanerProgress = 100;
             if (diskCleanerScanPercent) diskCleanerScanPercent.textContent = '100%';
+            if (diskCleanerProgressFill) diskCleanerProgressFill.style.width = '100%';
+            if (diskCleanerStatusText) diskCleanerStatusText.textContent = 'Scan complete!';
             clearInterval(diskCleanerScanInterval);
             diskCleanerScanInterval = null;
             // Navigate to disk cleaner page after scan completes
@@ -2225,7 +2272,9 @@
               showDiskCleanerPage();
             }, 500);
           } else {
-            if (diskCleanerScanPercent) diskCleanerScanPercent.textContent = Math.floor(diskCleanerProgress) + '%';
+            const progress = Math.floor(diskCleanerProgress);
+            if (diskCleanerScanPercent) diskCleanerScanPercent.textContent = progress + '%';
+            if (diskCleanerProgressFill) diskCleanerProgressFill.style.width = progress + '%';
           }
         }, 100);
       }
