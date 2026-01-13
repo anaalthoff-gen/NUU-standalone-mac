@@ -137,7 +137,7 @@
     }
 
     .app-logo {
-      padding: 24px 24px 8px 24px;
+      padding: 0 24px 8px 0;
     }
 
     .app-logo img {
@@ -189,12 +189,21 @@
       width: 100%;
     }
 
+    /* 24px spacing between Dashboard and Disk Cleaner */
+    .nav-section:first-child {
+      margin-bottom: 24px;
+    }
+
+    /* Hide divider between Dashboard and Disk Cleaner */
+    .nav-section:first-child + .nav-divider {
+      display: none;
+    }
+
     /* Divider between sections */
     .nav-divider {
-      height: 0;
+      height: 24px;
       width: 100%;
       flex-shrink: 0;
-      margin-top: 24px;
     }
 
     /* Menu Item - matches Figma exactly */
