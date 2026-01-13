@@ -1347,7 +1347,7 @@
     .disk-cleaner-heading {
       display: flex;
       flex-direction: column;
-      gap: 0;
+      gap: 8px;
       max-width: 471px;
     }
 
@@ -1357,45 +1357,38 @@
       line-height: var(--fonts-line-height-h2);
       letter-spacing: var(--fonts-letter-spacing-h2);
       color: var(--colors-on-background);
-      margin: 0 0 8px 0;
+      margin: 0;
     }
 
-    .disk-cleaner-description {
+    .disk-cleaner-subtitle {
       font-size: var(--fonts-size-body-2);
       font-weight: var(--fonts-weight-body-2);
       line-height: var(--fonts-line-height-body-2);
-      color: var(--colors-on-background-secondary);
       letter-spacing: var(--fonts-letter-spacing-body-2);
+      color: var(--colors-on-background-secondary);
+      margin: 0;
     }
 
-    .disk-cleaner-description a {
+    .disk-cleaner-subtitle a {
       color: var(--colors-on-background-secondary);
       text-decoration: underline;
-      text-underline-position: from-font;
     }
 
-    .disk-cleaner-back-btn {
+    .disk-cleaner-menu-btn {
       width: 32px;
       height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--button-secondary-bg);
-      border: var(--button-secondary-border-width) solid var(--button-secondary-border-color);
-      border-radius: var(--radius-button);
+      background: var(--colors-background-state-b);
+      border: 1px solid var(--colors-on-surface-secondary);
+      border-radius: 4px;
       cursor: pointer;
       transition: all var(--timing-fast) var(--easing);
-      flex-shrink: 0;
     }
 
-    .disk-cleaner-back-btn:hover {
-      background: var(--colors-background-state-b);
-    }
-
-    .disk-cleaner-back-btn svg {
-      width: 20px;
-      height: 20px;
-      color: var(--button-secondary-on-color);
+    .disk-cleaner-menu-btn:hover {
+      background: var(--colors-on-surface-light);
     }
 
     .disk-cleaner-content {
@@ -1436,19 +1429,24 @@
       margin: 0;
     }
 
-    .disk-cleaner-info-subtitle {
+    .disk-cleaner-info-text {
       font-size: var(--fonts-size-body-2);
       font-weight: var(--fonts-weight-body-2);
       line-height: var(--fonts-line-height-body-2);
-      color: var(--colors-on-background-secondary);
       letter-spacing: var(--fonts-letter-spacing-body-2);
+      color: var(--colors-on-background-secondary);
       margin: 0;
     }
 
-    .disk-cleaner-info-subtitle a {
+    .disk-cleaner-info-text a {
       color: var(--colors-on-background-secondary);
       text-decoration: underline;
-      text-underline-position: from-font;
+    }
+
+    .disk-cleaner-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
     }
 
     /* ========================================
@@ -1723,6 +1721,39 @@
           </div>
         </div>
 
+        <!-- Disk Cleaner Page -->
+        <div class="disk-cleaner-page hidden" id="diskCleanerPage">
+          <div class="disk-cleaner-header">
+            <div class="disk-cleaner-heading">
+              <h2 class="disk-cleaner-title">Disk Cleaner</h2>
+              <p class="disk-cleaner-subtitle">
+                Clean up unnecessary files to keep your Mac running smooth. <a href="#">Learn more</a>
+              </p>
+            </div>
+            <button class="disk-cleaner-menu-btn" aria-label="Menu">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10" cy="5" r="1.5" fill="#242424"/>
+                <circle cx="10" cy="10" r="1.5" fill="#242424"/>
+                <circle cx="10" cy="15" r="1.5" fill="#242424"/>
+              </svg>
+            </button>
+          </div>
+          <div class="disk-cleaner-content">
+            <div class="disk-cleaner-illustration">
+              <img src="Ilustrations/illu_l_111.svg" alt="Disk Cleaner">
+            </div>
+            <div class="disk-cleaner-info">
+              <h3 class="disk-cleaner-info-title">Find and clean junk files to reclaim storage space</h3>
+              <p class="disk-cleaner-info-text">
+                Next automatic scan scheduled for June 10, 2025 at 4:00pm. <a href="#">Change</a>
+              </p>
+            </div>
+            <div class="disk-cleaner-actions">
+              <button class="btn btn-primary" id="diskCleanerStartBtn">Start Scan</button>
+            </div>
+          </div>
+        </div>
+
         <!-- Scanning Page (shown during scan) -->
         <div class="scanning-page hidden" id="scanningPage">
           <div class="scanning-header">
@@ -1811,7 +1842,7 @@
                       <circle cx="12" cy="12" r="10" stroke="#0061D3" stroke-width="2" stroke-dasharray="31.416" stroke-dashoffset="23.562" stroke-linecap="round" fill="none" class="status-progress-arc"/>
                     </svg>
                   </div>
-                  <button class="chevron-btn" id="diskCleanerChevronBtn">
+                  <button class="chevron-btn">
                     <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -1952,37 +1983,6 @@
 
         </div><!-- End Dashboard Page -->
 
-        <!-- Disk Cleaner Page -->
-        <div class="disk-cleaner-page hidden" id="diskCleanerPage">
-          <div class="disk-cleaner-header">
-            <div class="disk-cleaner-heading">
-              <h2 class="disk-cleaner-title">Disk Cleaner</h2>
-              <p class="disk-cleaner-description">
-                Clean up unnecessary files to keep your Mac running smooth. <a href="#">Learn more</a>
-              </p>
-            </div>
-            <button class="disk-cleaner-back-btn" id="diskCleanerBackBtn">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="12" cy="5" r="1.5" fill="currentColor"/>
-                <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
-                <circle cx="12" cy="19" r="1.5" fill="currentColor"/>
-              </svg>
-            </button>
-          </div>
-          <div class="disk-cleaner-content">
-            <div class="disk-cleaner-illustration">
-              <img src="Ilustrations/illu_l_111.svg" alt="Disk Cleaner">
-            </div>
-            <div class="disk-cleaner-info">
-              <h3 class="disk-cleaner-info-title">Find and clean junk files to reclaim storage space</h3>
-              <p class="disk-cleaner-info-subtitle">
-                Next automatic scan scheduled for June 10, 2025 at 4:00pm. <a href="#">Change</a>
-              </p>
-            </div>
-            <button class="btn btn-primary" id="diskCleanerStartScanBtn">Start Scan</button>
-          </div>
-        </div>
-
       </div>
     </div>
   </div>
@@ -1996,9 +1996,11 @@
 
       // Page elements
       const welcomePage = document.getElementById('welcomePage');
+      const diskCleanerPage = document.getElementById('diskCleanerPage');
       const scanningPage = document.getElementById('scanningPage');
       const dashboardPage = document.getElementById('dashboardPage');
       const startScanBtn = document.getElementById('startScanBtn');
+      const diskCleanerStartBtn = document.getElementById('diskCleanerStartBtn');
       const stopScanBtn = document.getElementById('stopScanBtn');
       const scanProgressFill = document.getElementById('scanProgressFill');
       const scanPercentage = document.getElementById('scanPercentage');
@@ -2009,6 +2011,16 @@
       // Function to show welcome page
       function showWelcomePage() {
         welcomePage.classList.remove('hidden');
+        diskCleanerPage.classList.add('hidden');
+        scanningPage.classList.add('hidden');
+        dashboardPage.classList.add('hidden');
+        resetScan();
+      }
+
+      // Function to show disk cleaner page
+      function showDiskCleanerPage() {
+        welcomePage.classList.add('hidden');
+        diskCleanerPage.classList.remove('hidden');
         scanningPage.classList.add('hidden');
         dashboardPage.classList.add('hidden');
         resetScan();
@@ -2017,6 +2029,7 @@
       // Function to show scanning page
       function showScanningPage() {
         welcomePage.classList.add('hidden');
+        diskCleanerPage.classList.add('hidden');
         scanningPage.classList.remove('hidden');
         dashboardPage.classList.add('hidden');
         startScanAnimation();
@@ -2025,6 +2038,7 @@
       // Function to show dashboard page
       function showDashboardPage() {
         welcomePage.classList.add('hidden');
+        diskCleanerPage.classList.add('hidden');
         scanningPage.classList.add('hidden');
         dashboardPage.classList.remove('hidden');
         resetScan();
@@ -2092,13 +2106,22 @@
           // Add active class to clicked item
           this.classList.add('active');
 
-          // Check if Dashboard was clicked - return to welcome page
+          // Handle page navigation
           const page = this.getAttribute('data-page');
           if (page === 'dashboard') {
             showWelcomePage();
+          } else if (page === 'disk-cleaner') {
+            showDiskCleanerPage();
           }
         });
       });
+
+      // Disk Cleaner Start Scan button
+      if (diskCleanerStartBtn) {
+        diskCleanerStartBtn.addEventListener('click', function() {
+          showScanningPage();
+        });
+      }
 
       // Checkbox functionality
       const checkboxes = document.querySelectorAll('.checkbox-input');
@@ -2199,47 +2222,6 @@
             if (statusEl) statusEl.classList.add('hidden');
             if (valueEl) valueEl.classList.remove('hidden');
           });
-        });
-      }
-
-      // Disk Cleaner Page Navigation
-      const diskCleanerPage = document.getElementById('diskCleanerPage');
-      const diskCleanerChevronBtn = document.getElementById('diskCleanerChevronBtn');
-      const diskCleanerBackBtn = document.getElementById('diskCleanerBackBtn');
-      const diskCleanerStartScanBtn = document.getElementById('diskCleanerStartScanBtn');
-
-      // Function to show disk cleaner page
-      function showDiskCleanerPage() {
-        if (dashboardPage) dashboardPage.classList.add('hidden');
-        if (diskCleanerPage) diskCleanerPage.classList.remove('hidden');
-      }
-
-      // Function to hide disk cleaner page and show dashboard
-      function hideDiskCleanerPage() {
-        if (diskCleanerPage) diskCleanerPage.classList.add('hidden');
-        if (dashboardPage) dashboardPage.classList.remove('hidden');
-      }
-
-      // Disk Cleaner chevron button click
-      if (diskCleanerChevronBtn) {
-        diskCleanerChevronBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          showDiskCleanerPage();
-        });
-      }
-
-      // Disk Cleaner back button click
-      if (diskCleanerBackBtn) {
-        diskCleanerBackBtn.addEventListener('click', function() {
-          hideDiskCleanerPage();
-        });
-      }
-
-      // Disk Cleaner Start Scan button click
-      if (diskCleanerStartScanBtn) {
-        diskCleanerStartScanBtn.addEventListener('click', function() {
-          showScanningPage();
         });
       }
     })();
